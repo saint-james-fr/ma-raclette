@@ -1,4 +1,13 @@
 <div class="container">
-  <h1><%= @raclette.location %></h1>
-  
+  <h1>Raclette <%= @raclette.location %></h1>
+  <div class= "img-large" >
+    <img src="https://images.unsplash.com/photo-1635924210828-ccbe493b6e1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="">
+  </div>
+  <p>La description de ma raclette si on décide d'en mettre. </p>
+  <div class="form form-group">
+    <%= simple_form_for [@raclette, @booking] do |f| %>
+      <%= f.input :date %>
+      <%= f.button :submit %>
+    <% end %>
+  </div>
 </div>
