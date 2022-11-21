@@ -22,6 +22,7 @@ class RaclettesController < ApplicationController
       redirect_to raclette_path(@raclette)
     else
       render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
