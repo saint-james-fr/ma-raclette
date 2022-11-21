@@ -9,7 +9,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(params_booking)
     @booking.raclette = @raclette
     @booking.save
-    redirect_to raclette_path(@raclette)
+    redirect_to raclette_booking_path(@raclette)
   end
 
   def index
@@ -37,7 +37,7 @@ private
   end
 
   def params_booking
-    parmas.require[:bookings].permit(:date, :description)
+    params.require[:bookings].permit(:date, :description)
   end
 
 end
