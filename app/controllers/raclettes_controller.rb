@@ -38,7 +38,7 @@ class RaclettesController < ApplicationController
     redirect_to raclettes_path, status: :see_other
   end
 
-private
+  private
 
   def set_raclette
     @raclette = Raclette.find(params[:id])
