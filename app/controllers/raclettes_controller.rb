@@ -18,8 +18,10 @@ class RaclettesController < ApplicationController
 
   def create
     @raclette = Raclette.new(params_raclette)
-    @raclette.save
-    redirect_to raclette_path(@raclette)
+    if @raclette.save
+      redirect_to raclette_path(@raclette)
+    else
+      render :new, status: :unprocessable_entity
   end
 
   def edit
@@ -27,7 +29,7 @@ class RaclettesController < ApplicationController
 
   def update
     @raclette.update(params_raclette)
-    redirect_to raclette_path
+    redirect_to raclette_path(@raclette)
   end
 
   def destroy
