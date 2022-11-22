@@ -11,7 +11,7 @@ user_admin_options = {
   avatar: "https://picsum.photos/200",
   password_confirmation: "admin1234",
   description: "hey, i'm the admin",
-  email: "admin@ma-raclette.com"
+  email: "admin@ma-raclette.com",
 }
 
 puts ">"
@@ -24,6 +24,9 @@ puts "done!"
 raclette_options = {
   location: "chez Anne",
   user_id: User.last.id,
+  title: "Anne's Famous Raclette",
+  description: "Il paraît qu'il y aura 1,5kg de fromage... et de la salade!",
+  number_of_guests: 6,
 }
 puts ">"
 puts "starts creating raclette"
