@@ -1,2 +1,18 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.enviedebienmanger.fr/sites/default/files/fotolia_58978138_s.jpg);">
+  <div class="container">
+    <h1>Ma Raclette</h1>
+    <p>Lorem Ipsum.</p>
+  </div>
+</div>
+<div class="container">
+  <% Raclette.last(5).reverse.each do |raclette| %>
+    <ul>
+      <h2><%= raclette.title %></h2>
+      <li><%= raclette.photo %></li>
+      <li><%= raclette.location %></li>
+      <li><%= raclette.number_of_guests %></li>
+      <li><%= raclette.description %></li>
+      <li><%= raclette.user.avatar %></li>
+    </ul>
+  <% end %>
+</div>
