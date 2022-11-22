@@ -7,6 +7,29 @@
   <img src="<%= @raclette.photo %>" alt="Raclette's photo" class="img-large">
   <p><span class="underline">What's to expect?</span><br><%= @raclette.description %></p>
   <p><span class="underline">How many guests are expected?</span><br><%= @raclette.number_of_guests %></p>
+  <p>
+  <ul>
+      <span class="underline">Upcoming bookings:</span><br><% @raclette.bookings.each do |booking| %>
+      <li>
+        <%= booking.date %> -- <%= booking.description %> -- <%= booking.user.first_name %>
+        <%= link_to 'Edit my booking', edit_raclette_booking_path(@raclette, booking) %>
+      </li>
+      <% end %>
+    </ul>
+  </p>
+  <p>
+  <ul>
+      <span class="underline">lastest rating:</span><br><% @raclette.bookings.each do |booking|
+        booking.reviews.each do |review| %>
+          <li>
+            <%= review.description %> -- <%= review.rating %> -- <%= booking.user.first_name %>
+            <%= link_to 'Edit my review', edit_booking_review_path(booking, review) %>
+          </li>
+          <% end %>
+        <% end %>
+    </ul>
+  </p>
+
   <%= link_to "Edit", edit_raclette_path, class: "btn btn-info" %>
   <hr>
   <p>This one looks good! Why don't you book at <strong><%= @raclette.user.first_name  %></strong>?</p>
