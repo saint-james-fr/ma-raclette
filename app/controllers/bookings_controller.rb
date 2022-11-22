@@ -25,7 +25,7 @@ class BookingsController < ApplicationController
 
   def update
     @booking.update(params_booking)
-    redirect_to raclette_booking_path(@booking)
+    redirect_to raclette_booking_path(@raclette, @booking)
   end
 
   def show
@@ -42,7 +42,7 @@ private
   end
 
   def params_booking
-    params.require(:booking).permit(:date, :description, :raclette_id)
+    params.require(:booking).permit(:date, :description, :raclette_id, :status)
   end
 
 end
