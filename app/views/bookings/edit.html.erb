@@ -1,2 +1,8 @@
-<h1>Bookings#edit</h1>
-<p>Find me in app/views/bookings/edit.html.erb</p>
+<h1> Modifier votre raclette </h1>
+
+<%= simple_form_for [@raclette, @booking] do |f| %>
+
+  <%= f.input :date %>
+  <%= f.input :description %>
+  <%= f.submit %>
+<% end %>

@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_raclette, only: %i[new create update destroy]
+  before_action :set_raclette, only: %i[new create edit update destroy]
   before_action :set_booking, only: %i[edit update show]
   def new
     @booking = Booking.new
@@ -29,7 +29,7 @@ class BookingsController < ApplicationController
 private
 
   def set_booking
-    @booking = Booking.find(params([:id]))
+    @booking = Booking.find(params[:id])
   end
 
   def set_raclette
