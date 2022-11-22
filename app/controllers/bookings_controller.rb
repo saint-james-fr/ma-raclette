@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_raclette, only: %i[new create update destroy show]
+  before_action :set_raclette, only: %i[new create edit update destroy show]
   before_action :set_booking, only: %i[edit update show]
 
   def new
@@ -8,12 +8,12 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(params_booking)
-    # @booking.user = current_user
+    @booking.user = current_user
     @booking.raclette = @raclette
     if @booking.save
-      redirect_to raclette_booking_path(@booking)
+      redirect_to raclette_booking_path(@raclette, @booking)
     else
-      render :new, status: :unprocessable_entity
+      render "raclettes/show", status: :unprocessable_entity
     end
   end
 
