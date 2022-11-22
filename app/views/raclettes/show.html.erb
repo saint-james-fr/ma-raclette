@@ -1,9 +1,12 @@
 <div class="container">
   <h1><%= @raclette.title %></h1>
+  <div class="d-flex justify-content-start">
   <h4><%= @raclette.location %></h4>
+  <img class="avatar" src="<%= @raclette.user.avatar %>" alt="">
+  </div>
   <img src="<%= @raclette.photo %>" alt="Raclette's photo" class="img-large">
   <p><span class="underline">What's to expect?</span><br><%= @raclette.description %></p>
-  <p><span class="underline">How many guest are expected</span><br><%= @raclette.number_of_guests %></p>
+  <p><span class="underline">How many guests are expected?</span><br><%= @raclette.number_of_guests %></p>
   <%= link_to "Edit", edit_raclette_path, class: "btn btn-info" %>
   <hr>
   <p>This one looks good! Why don't you book at <strong><%= @raclette.user.first_name  %></strong>?</p>
