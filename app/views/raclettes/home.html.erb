@@ -5,3 +5,15 @@
     <p>Lorem Ipsum.</p>
   </div>
 </div>
+<div class="container">
+  <% Raclette.last(5).reverse.each do |raclette| %>
+    <ul>
+      <h2><%= raclette.title %></h2>
+      <li><%= raclette.photo %></li>
+      <li><%= raclette.location %></li>
+      <li><%= raclette.number_of_guests %></li>
+      <li><%= raclette.description %></li>
+      <li><%= raclette.user.avatar %></li>
+    </ul>
+  <% end %>
+</div>
