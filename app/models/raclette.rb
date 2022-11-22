@@ -4,4 +4,5 @@ class Raclette < ApplicationRecord
   has_many :reviews, through: :bookings
 
   validates :location, presence: true
+  validates :title, presence: true
 end
