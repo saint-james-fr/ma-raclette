@@ -3,20 +3,23 @@ class RaclettesController < ApplicationController
   before_action :set_raclette, only: %i[show edit update destroy]
 
   def index
-    @raclettes = Raclette.all
+    @raclettes = policy_scope(Raclette)
   end
 
   def show
+    authorize @raclette
     @booking = Booking.new
   end
 
   def new
     @raclette = Raclette.new
+    authorize @raclette
   end
 
   def create
     @raclette = Raclette.new(params_raclette)
     @raclette.user = current_user
+    authorize @raclette
     if @raclette.save
       redirect_to raclette_path(@raclette)
     else
