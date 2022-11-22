@@ -50,6 +50,6 @@ class RaclettesController < ApplicationController
   end
 
   def params_raclette
-    params.require(:raclette).permit(:location, :photo)
+    params.require(:raclette).permit(:location, :photo, :title, :description, :number_of_guests)
   end
 end

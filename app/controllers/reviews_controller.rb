@@ -2,19 +2,30 @@ class ReviewsController < ApplicationController
   before_action :set_booking, only: %i[new create edit update destroy]
   before_action :set_review, only: %i[edit update show]
 
-  def destroy
-  end
-
   def new
+    @review = Review.new
   end
 
   def create
+    @review = Review.new(params_review)
+    @review.user = current_user
+    @review.booking = @booking
+    if @review.save
+      redirect_to raclette_path(@booking.raclette)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
   end
 
   def update
+    @review.update(params_review)
+    redirect_to raclette_path(@booking.raclette)
+  end
+
+  def destroy
   end
 
   private
@@ -28,7 +39,6 @@ class ReviewsController < ApplicationController
   end
 
   def params_review
-    params.require(:review).permit(:description, :rating)
+    params.require(:review).permit(:description, :rating, :booking_id)
   end
-
 end

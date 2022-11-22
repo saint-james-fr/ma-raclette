@@ -1,19 +1,49 @@
 <div class="container">
-  <h1>Raclette <%= @raclette.location %></h1>
-  <div class= "img-large" >
-    <img src="https://images.unsplash.com/photo-1635924210828-ccbe493b6e1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="">
+  <h1><%= @raclette.title %></h1>
+  <div class="d-flex justify-content-start">
+  <h4><%= @raclette.location %></h4>
+  <img class="avatar" src="<%= @raclette.user.avatar %>" alt="">
   </div>
-  <p>Select a date to book </p>
-  <div class="form form-group">
+  <img src="<%= @raclette.photo %>" alt="Raclette's photo" class="img-large">
+  <p><span class="underline">What's to expect?</span><br><%= @raclette.description %></p>
+  <p><span class="underline">How many guests are expected?</span><br><%= @raclette.number_of_guests %></p>
+  <p>
+  <ul>
+      <span class="underline">Upcoming bookings:</span><br><% @raclette.bookings.each do |booking| %>
+      <li>
+        <%= booking.date %> -- <%= booking.description %> -- <%= booking.user.first_name %>
+        <%= link_to 'Edit my booking', edit_raclette_booking_path(@raclette, booking) %>
+      </li>
+      <% end %>
+    </ul>
+  </p>
+  <p>
+  <ul>
+      <span class="underline">lastest rating:</span><br><% @raclette.bookings.each do |booking|
+        booking.reviews.each do |review| %>
+          <li>
+            <%= review.description %> -- <%= review.rating %> -- <%= booking.user.first_name %>
+            <%= link_to 'Edit my review', edit_booking_review_path(booking, review) %>
+          </li>
+          <% end %>
+        <% end %>
+    </ul>
+  </p>
+
+  <%= link_to "Edit", edit_raclette_path, class: "btn btn-info" %>
+  <hr>
+  <p>This one looks good! Why don't you book at <strong><%= @raclette.user.first_name  %></strong>?</p>
     <%= simple_form_for [@raclette, @booking] do |f| %>
       <%= f.input :date %>
       <%= f.input :description %>
-      <%= f.button :submit %>
+      <div>
+        <%= f.button :submit, class: "btn btn-primary" %>
     <% end %>
-  </div>
-  <% if policy(@raclette).destroy? %>
-    <%= link_to "Delete",
-    raclette_path(@raclette),
-    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-  <% end %>
+       <% if policy(@raclette).destroy? %>
+        <%= link_to "Delete",
+        raclette_path(@raclette),
+        class: "btn btn-danger",
+        data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir supprimer cet événement ?"} %>
+      <% end %>
+      </div>
 </div>

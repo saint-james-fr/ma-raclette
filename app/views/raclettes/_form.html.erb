@@ -1,5 +1,8 @@
 <%= simple_form_for(raclette) do |f| %>
-    <%= f.input :photo  %>
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= f.input :number_of_guests %>
     <%= f.input :location %>
+    <%= f.input :photo  %>
     <%= f.submit %>
 <% end %>
