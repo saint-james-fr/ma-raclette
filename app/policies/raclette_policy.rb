@@ -4,6 +4,7 @@ class RaclettePolicy < ApplicationPolicy
     def resolve
       scope.all
     end
+  end
 
     def show?
       true
@@ -20,5 +21,4 @@ class RaclettePolicy < ApplicationPolicy
     def destroy?
       record.user == user
     end
-  end
 end
