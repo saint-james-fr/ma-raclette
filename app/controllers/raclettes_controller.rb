@@ -28,14 +28,17 @@ class RaclettesController < ApplicationController
   end
 
   def edit
+    authorize @raclette
   end
 
   def update
+    authorize @raclette
     @raclette.update(params_raclette)
     redirect_to raclette_path(@raclette)
   end
 
   def destroy
+    authorize @raclette
     @raclette.destroy
     redirect_to raclettes_path, status: :see_other
   end
