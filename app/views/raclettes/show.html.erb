@@ -1,17 +1,21 @@
 <div class="container">
-  <h1>Raclette <%= @raclette.location %></h1>
-  <div class= "img-large" >
-    <img src="https://images.unsplash.com/photo-1635924210828-ccbe493b6e1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="">
-  </div>
-  <p>Select a date to book </p>
-  <div class="form form-group">
+  <h1><%= @raclette.title %></h1>
+  <h4><%= @raclette.location %></h4>
+  <img src="<%= @raclette.photo %>" alt="Raclette's photo" class="img-large">
+  <p><span class="underline">What's to expect?</span><br><%= @raclette.description %></p>
+  <p><span class="underline">How many guest are expected</span><br><%= @raclette.number_of_guests %></p>
+  <%= link_to "Edit", edit_raclette_path, class: "btn btn-info" %>
+  <hr>
+  <p>This one looks good! Why don't you book at <strong><%= @raclette.user.first_name  %></strong>?</p>
     <%= simple_form_for [@raclette, @booking] do |f| %>
       <%= f.input :date %>
       <%= f.input :description %>
-      <%= f.button :submit %>
+      <div>
+        <%= f.button :submit, class: "btn btn-primary" %>
     <% end %>
-  </div>
-  <%= link_to "Supprimer",
-  raclette_path(@raclette),
-  data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir supprimer cet événement ?"} %>
+        <%= link_to "Delete",
+        raclette_path(@raclette),
+        class: "btn btn-danger",
+        data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir supprimer cet événement ?"} %>
+      </div>
 </div>
