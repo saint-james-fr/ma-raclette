@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :raclettes do
-    resources :bookings, except: [:destroy]
-    resources :reviews, except: [:index, :show, :destroy]
+    resources :bookings, except: [:destroy] do
+      resources :reviews, except: [:index, :show, :destroy]
+    end
   end
   resources :reviews, only: [:destroy]
 end
