@@ -8,9 +8,10 @@ user_admin_options = {
   first_name: "admin_first_name",
   last_name: "admin_name",
   password: "admin1234",
+  avatar: "https://picsum.photos/200",
   password_confirmation: "admin1234",
   description: "hey, i'm the admin",
-  email: "admin@ma-raclette.com",
+  email: "admin@ma-raclette.com"
 }
 
 puts ">"
