@@ -8,7 +8,6 @@ class ReviewsController < ApplicationController
   end
 
   def new
-
   end
 
   def create
@@ -26,11 +25,11 @@ class ReviewsController < ApplicationController
     @booking = Booking.find(params[:booking_id])
   end
 
-  def set_reviews
-    @reviews = Reviews.find(params[:id])
+  def set_review
+    @review = Review.find(params[:id])
   end
 
-  def params_reviews
+  def params_review
     params.require(:review).permit(:description, :rating)
   end
 
