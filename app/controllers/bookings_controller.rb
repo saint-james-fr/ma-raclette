@@ -34,7 +34,7 @@ class BookingsController < ApplicationController
 private
 
   def set_booking
-    @booking = Booking.find(params([:id]))
+    @booking = Booking.find(params[:id])
   end
 
   def set_raclette
