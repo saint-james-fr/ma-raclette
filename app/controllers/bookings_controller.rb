@@ -1,20 +1,24 @@
 class BookingsController < ApplicationController
   before_action :set_raclette, only: %i[new create update destroy]
   before_action :set_booking, only: %i[edit update show]
+
   def new
     @booking = Booking.new
   end
 
   def create
     @booking = Booking.new(params_booking)
+    # @booking.user = current_user
     @booking.raclette = @raclette
-    @booking.save
-    redirect_to raclette_booking_path(@raclette)
+    if @booking.save
+      redirect_to raclette_booking_path(@booking)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def index
   end
-
 
   def edit
   end
@@ -26,6 +30,7 @@ class BookingsController < ApplicationController
 
   def show
   end
+
 private
 
   def set_booking
@@ -37,7 +42,7 @@ private
   end
 
   def params_booking
-    params.require[:bookings].permit(:date, :description)
+    params.require(:booking).permit(:date, :description, :raclette_id)
   end
 
 end
