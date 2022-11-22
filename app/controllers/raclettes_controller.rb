@@ -6,7 +6,7 @@ class RaclettesController < ApplicationController
   end
 
   def index
-    Raclette.all
+    @raclettes = Raclette.all
   end
 
   def show
