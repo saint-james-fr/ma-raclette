@@ -8,7 +8,7 @@
 <div class="container">
   <% Raclette.last(5).reverse.each do |raclette| %>
     <ul>
-      <h1><%= raclette.title %></h1>
+      <h2><%= raclette.title %></h2>
       <li><%= raclette.photo %></li>
       <li><%= raclette.location %></li>
       <li><%= raclette.number_of_guests %></li>
