@@ -1,2 +1,9 @@
-<h1>Reviews#edit</h1>
-<p>Find me in app/views/reviews/edit.html.erb</p>
+<div class="container">
+  <h1>Edit <%= @booking.description %></h1>
+
+<%= simple_form_for [@booking, @review] do |f| %>
+    <%= f.input :description %>
+    <%= f.input :rating %>
+    <%= f.submit %>
+<% end %>
+</div>

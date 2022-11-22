@@ -7,12 +7,12 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :raclettes do
     resources :bookings, except: [:destroy] do
-      resources :reviews, except: [:index, :show, :create, :destroy]
+      resources :reviews, only: [:new]
     end
   end
-  
+
   resources :bookings, only: [] do
-    resources :reviews, only: :create
+    resources :reviews, except: [:new, :destroy]
   end
 
   resources :reviews, only: [:destroy]

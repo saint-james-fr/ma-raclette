@@ -21,6 +21,8 @@ class ReviewsController < ApplicationController
   end
 
   def update
+    @review.update(params_review)
+    redirect_to raclette_path(@booking.raclette)
   end
 
   def destroy
