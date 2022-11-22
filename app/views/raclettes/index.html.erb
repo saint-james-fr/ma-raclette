@@ -1,0 +1,8 @@
+<h1>Find the hottest raclettes in your region</h1>
+<ul>
+  <% @raclettes.each do |raclette| %>
+    <li>
+      <%= link_to raclette.location, raclette_path(raclette) %>
+    </li>
+  <% end %>
+</ul>
