@@ -1,25 +1,25 @@
 class RaclettesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[home show index]
+  skip_before_action :authenticate_user!, only: %i[show index]
   before_action :set_raclette, only: %i[show edit update destroy]
 
-  def home
-  end
-
   def index
-    @raclettes = Raclette.all
+    @raclettes = policy_scope(Raclette)
   end
 
   def show
+    authorize @raclette
     @booking = Booking.new
   end
 
   def new
     @raclette = Raclette.new
+    authorize @raclette
   end
 
   def create
     @raclette = Raclette.new(params_raclette)
     @raclette.user = current_user
+    authorize @raclette
     if @raclette.save
       redirect_to raclette_path(@raclette)
     else
@@ -28,14 +28,17 @@ class RaclettesController < ApplicationController
   end
 
   def edit
+    authorize @raclette
   end
 
   def update
+    authorize @raclette
     @raclette.update(params_raclette)
     redirect_to raclette_path(@raclette)
   end
 
   def destroy
+    authorize @raclette
     @raclette.destroy
     redirect_to raclettes_path, status: :see_other
   end

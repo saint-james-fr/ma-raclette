@@ -39,9 +39,11 @@
       <div>
         <%= f.button :submit, class: "btn btn-primary" %>
     <% end %>
+       <% if policy(@raclette).destroy? %>
         <%= link_to "Delete",
         raclette_path(@raclette),
         class: "btn btn-danger",
         data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir supprimer cet événement ?"} %>
+      <% end %>
       </div>
 </div>
