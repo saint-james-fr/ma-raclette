@@ -1,9 +1,6 @@
 class RaclettesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[home show index]
+  skip_before_action :authenticate_user!, only: %i[show index]
   before_action :set_raclette, only: %i[show edit update destroy]
-
-  def home
-  end
 
   def index
     @raclettes = Raclette.all

@@ -1,8 +1,6 @@
 class ReviewsController < ApplicationController
-
   before_action :set_booking, only: %i[new create edit update destroy]
   before_action :set_review, only: %i[edit update show]
-
 
   def destroy
   end
