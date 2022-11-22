@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_raclette, only: %i[new create update destroy]
+  before_action :set_raclette, only: %i[new create update destroy show]
   before_action :set_booking, only: %i[edit update show]
 
   def new

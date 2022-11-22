@@ -1,2 +1,5 @@
-<h1> <%=  %></h1>
-<p>Find me in app/views/bookings/show.html.erb</p>
+<h1> <%= @raclette.location %></h1>
+<%= @raclette.user %>
+<%= @booking.date %>
+<%= @booking.description %>
+<%= link_to 'See all my bookings',  raclette_bookings_path %>

@@ -7,6 +7,7 @@
   <div class="form form-group">
     <%= simple_form_for [@raclette, @booking] do |f| %>
       <%= f.input :date %>
+      <%= f.input :description %>
       <%= f.button :submit %>
     <% end %>
   </div>
