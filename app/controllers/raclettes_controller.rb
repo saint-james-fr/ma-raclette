@@ -19,6 +19,7 @@ class RaclettesController < ApplicationController
 
   def create
     @raclette = Raclette.new(params_raclette)
+    @raclette.user = current_user
     if @raclette.save
       redirect_to raclette_path(@raclette)
     else
