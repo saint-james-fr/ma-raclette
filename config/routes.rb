@@ -6,14 +6,10 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :raclettes do
-    resources :bookings, except: [:destroy] do
-      resources :reviews, only: [:new]
-    end
+    resources :bookings, except: [:destroy]
   end
 
   resources :bookings, only: [] do
-    resources :reviews, except: [:new, :destroy]
+    resources :reviews, except: [:destroy]
   end
-
-  resources :reviews, only: [:destroy]
 end
