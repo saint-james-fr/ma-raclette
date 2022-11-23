@@ -3,7 +3,7 @@
   <li>Avatar: <%= @raclette.user.avatar %></li>
   <li>Raclette owner: <%= @raclette.user.first_name %> <%= @raclette.user.last_name %></li>
   <li>Raclette owner: phone number: <%= @raclette.user.phone_number %></li>
-  <li>Date: <%= @booking.date %></li>
+  <li><%= @booking.date.strftime("Booked on %B %d, %Y") %></li>
   <li>Description: <%= @booking.description %></li>
 </ul>
 

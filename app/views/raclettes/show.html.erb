@@ -12,12 +12,12 @@
       <span class="underline">Upcoming bookings:</span><br><% @raclette.bookings.each do |booking| %>
         <% if current_user == booking.user %>
         <li>
-          <%= booking.date %> -- <%= booking.description %> -- <%= booking.user.first_name %>
+          <%= booking.date.strftime("Booked on %B %d, %Y") %> -- <%= booking.description %> -- <%= booking.user.first_name %>
           <%= link_to 'Edit my booking', edit_raclette_booking_path(@raclette, booking) %>
         <% end %>
       </li>
       <% end %>
-    </ul>
+  </ul>
   </p>
   <p>
   <ul>
@@ -31,24 +31,13 @@
           </li>
           <% end %>
         <% end %>
-    </ul>
+  </ul>
   </p>
   <% if current_user == @raclette.user %>
     <%= link_to "Edit", edit_raclette_path, class: "btn btn-info" %>
   <% end %>
   <hr>
   <p>This one looks good! Why don't you book at <strong><%= @raclette.user.first_name  %></strong>?</p>
-    <%= simple_form_for [@raclette, @booking] do |f| %>
-      <%= f.input :date %>
-      <%= f.input :description %>
-      <div>
-        <%= f.button :submit, class: "btn btn-primary" %>
-    <% end %>
-       <% if policy(@raclette).destroy? %>
-        <%= link_to "Delete",
-        raclette_path(@raclette),
-        class: "btn btn-danger",
-        data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir supprimer cet événement ?"} %>
-      <% end %>
+  <%= render "bookings/form", booking: @booking, raclette: @raclette  %>
       </div>
 </div>
