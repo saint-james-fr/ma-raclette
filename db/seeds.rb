@@ -11,7 +11,7 @@ user_admin_options = {
   avatar: "https://picsum.photos/200",
   password_confirmation: "admin1234",
   description: "hey, i'm the admin",
-  email: "admin@ma-raclette.com"
+  email: "admin@ma-raclette.com",
 }
 
 puts ">"
@@ -24,6 +24,10 @@ puts "done!"
 raclette_options = {
   location: "chez Anne",
   user_id: User.last.id,
+  title: "Anne's Famous Raclette",
+  description: "Il paraît qu'il y aura 1,5kg de fromage... et de la salade!",
+  number_of_guests: 6,
+  photo: "https://images.unsplash.com/photo-1635924210828-ccbe493b6e1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
 }
 puts ">"
 puts "starts creating raclette"
