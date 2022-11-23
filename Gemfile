@@ -30,6 +30,8 @@ gem "turbo-rails"
 gem "stimulus-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
+
+gem "geocoder"
 gem "jbuilder"
 
 # Faker Gem
