@@ -4,6 +4,14 @@ class RaclettesController < ApplicationController
 
   def index
     @raclettes = policy_scope(Raclette)
+    @markers = @raclettes.geocoded.map do |raclette|
+      {
+        lat: raclette.latitude,
+        lng: raclette.longitude,
+        info_window: render_to_string(partial: "info_window", locals: {raclette: raclette}),
+        image_url: helpers.asset_url("fromage")
+      }
+    end
   end
 
   def show
