@@ -1,8 +1,22 @@
-<h1>Find the hottest raclettes in your region</h1>
-<ul>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.manigod.com/medias/images/prestataires/raclette-party-13162.jpg);">
+  <div class="container">
+  <h1>Find the hottest raclettes in your region</h1>
+  </div>
+</div>
+<div class="container d-flex">
+  <div class="half-container">
   <% @raclettes.each do |raclette| %>
-    <li>
-      <%= link_to raclette.location, raclette_path(raclette) %>
-    </li>
-  <% end %>
-</ul>
+    <div class="card-product">
+        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+        <div class="card-product-infos">
+          <h2><%= raclette.title %></h2>
+          <p><%= raclette.description  %></p>
+        </div>
+      </div>
+      <% end %>
+  </div>
+  <div class="half-container">
+    <div class="map">
+    </div>
+  </div>
+</div>
