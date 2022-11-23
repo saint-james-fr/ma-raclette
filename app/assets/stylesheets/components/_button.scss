@@ -2,5 +2,10 @@
   background-color: #de9f20;
   color: white;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  margin-left:0px;
+  border-radius: 5px;
+  padding: 7px;
+  text-decoration: none;
+  &:hover{
+    color: white !important;
+  }
 }
