@@ -4,7 +4,11 @@
   <h4><%= @raclette.location %></h4>
   <img class="avatar" src="<%= @raclette.user.avatar %>" alt="">
   </div>
-  <img src="<%= @raclette.photo %>" alt="Raclette's photo" class="img-large">
+  <% if @raclette.photo.attached? %>
+      <%= cl_image_tag @raclette.photo.key, height: 300, width: 400, crop: :fill %>
+    <% else %>
+      <%  %>
+    <% end %>
   <p><span class="underline">What's to expect?</span><br><%= @raclette.description %></p>
   <p><span class="underline">How many guests are expected?</span><br><%= @raclette.number_of_guests %></p>
   <p>
