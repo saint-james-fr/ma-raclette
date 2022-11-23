@@ -14,6 +14,10 @@ ul {
   margin: 0
 }
 
+.raclette-infos {
+  margin-top: 20px;
+}
+
 .raclette-infos-subtitle {
   display: flex;
   justify-content: flex-start;
@@ -46,6 +50,7 @@ ul {
 
 .raclette-content {
   display: flex;
+  margin-top: 50px;
 }
 
 .raclette-content-description {
@@ -54,4 +59,7 @@ ul {
 
 .raclette-content-booking {
   margin-right: 4vw;
+  border: 2px solid rgba(91, 80, 217, 0.8);
+  border-radius: 10px;
+  padding: 30px;
 }
