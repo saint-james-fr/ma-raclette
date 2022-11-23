@@ -1,0 +1,111 @@
+.card-banner {
+  height: 290px;
+  width: 350px;
+  padding: 45px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  background-color: white;
+  color: black;
+  font-size: 24px;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-banner-title {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.card-banner-cta {
+  padding-top: 24px;
+  padding-bottom:24px;
+  display: flex;
+  justify-content: center;
+}
+
+.card-banner-logo {
+  display: flex;
+  justify-content: center;
+
+  img {
+    width: 60px;
+    height: auto;
+  }
+}
+
+
+.cards-grid-home {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 16px;
+}
+
+// Smallest device
+@media (min-width: 100px) and (max-width: 575px) {
+  .cards-grid-home {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .cards-grid-home {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .cards-grid-home {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .cards-grid-home {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .cards-grid-home {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.card-grid-home {
+  background-size: cover;
+  background-position: center;
+  height: 180px;
+  display: block;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  background-color: cornsilk;
+  transition: box-shadow 0.1s ease-in-out;
+}
+
+.card-grid-home:hover {
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 24px, rgba(17, 17, 26, 0.1) 0px 24px 24px;
+}
+
+.card-grid-home h2 {
+  font-size: 1.4rem;
+  padding-bottom: 20px;
+  text-decoration: underline;
+}
+
+.card-grid-home p {
+  padding: 0;
+}
+
+.cards-grid-home a {
+  text-decoration: none;
+  color: inherit;
+}
