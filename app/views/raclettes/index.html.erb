@@ -3,17 +3,19 @@
   <h1>Find the hottest raclettes in your region</h1>
   </div>
 </div>
-<div class="container d-flex">
+<div class="container d-flex mt-5">
   <div class="half-container">
   <% @raclettes.each do |raclette| %>
-    <div class="card-product">
-        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+    <%= link_to raclette_path(raclette) do%>
+      <div class="card-product">
+        <img src="<%= raclette.photo %>"/>
         <div class="card-product-infos">
           <h2><%= raclette.title %></h2>
           <p><%= raclette.description  %></p>
         </div>
       </div>
-      <% end %>
+    <% end %>
+  <% end %>
   </div>
   <div class="half-container">
     <div class="map">
