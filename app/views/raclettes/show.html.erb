@@ -10,9 +10,11 @@
   <p>
   <ul>
       <span class="underline">Upcoming bookings:</span><br><% @raclette.bookings.each do |booking| %>
-      <li>
-        <%= booking.date %> -- <%= booking.description %> -- <%= booking.user.first_name %>
-        <%= link_to 'Edit my booking', edit_raclette_booking_path(@raclette, booking) %>
+        <% if current_user == booking.user %>
+        <li>
+          <%= booking.date %> -- <%= booking.description %> -- <%= booking.user.first_name %>
+          <%= link_to 'Edit my booking', edit_raclette_booking_path(@raclette, booking) %>
+        <% end %>
       </li>
       <% end %>
     </ul>
@@ -23,14 +25,17 @@
         booking.reviews.each do |review| %>
           <li>
             <%= review.description %> -- <%= review.rating %> -- <%= booking.user.first_name %>
-            <%= link_to 'Edit my review', edit_booking_review_path(booking, review) %>
+            <% if current_user == review.user %>
+              <%= link_to 'Edit my review', edit_booking_review_path(booking, review) %>
+            <% end %>
           </li>
           <% end %>
         <% end %>
     </ul>
   </p>
-
-  <%= link_to "Edit", edit_raclette_path, class: "btn btn-info" %>
+  <% if current_user == @raclette.user %>
+    <%= link_to "Edit", edit_raclette_path, class: "btn btn-info" %>
+  <% end %>
   <hr>
   <p>This one looks good! Why don't you book at <strong><%= @raclette.user.first_name  %></strong>?</p>
     <%= simple_form_for [@raclette, @booking] do |f| %>
