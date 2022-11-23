@@ -3,11 +3,11 @@
   <li>Avatar: <%= @raclette.user.avatar %></li>
   <li>Raclette owner: <%= @raclette.user.first_name %> <%= @raclette.user.last_name %></li>
   <li>Raclette owner: phone number: <%= @raclette.user.phone_number %></li>
-  <li>Date: <%= @booking.date %></li>
+  <li><%= @booking.date.strftime("Booked on %B %d, %Y") %></li>
   <li>Description: <%= @booking.description %></li>
 </ul>
 
 
 <%= link_to 'Edit my booking',  edit_raclette_booking_path(@raclette, @booking) %>
 <%= link_to 'See all my bookings',  raclette_bookings_path %>
-<%= link_to 'Add a review',  new_raclette_booking_review_path(@raclette, @booking) %>
+<%= link_to 'Add a review',  new_booking_review_path(@booking) %>
