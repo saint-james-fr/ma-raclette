@@ -1,47 +1,40 @@
 <div class="container">
-  <h1><%= @raclette.title %></h1>
-  <div class="d-flex justify-content-start">
-  <h4><%= @raclette.location %></h4>
-  <img class="avatar" src="<%= @raclette.user.avatar %>" alt="">
+  <div class="raclette-infos">
+    <div class="raclette-infos-title">
+    <h1><%= @raclette.title %></h1>
+    </div>
+    <div class="raclette-infos-subtitle">
+      <p><i class="fa-solid fa-location-pin"></i> <%= @raclette.location %></p>
+      <p><i class="fa-solid fa-star"></i>4.2</p>
+    </div>
   </div>
-  <% if @raclette.photo.attached? %>
-      <%= cl_image_tag @raclette.photo.key, height: 300, width: 400, crop: :fill %>
-    <% else %>
-      <%  %>
+  <div class="raclette-images">
+    <div class="raclette-images-picture">
+      <% if @raclette.photo.attached? %>
+      <%= cl_image_tag @raclette.photo.key %>
     <% end %>
-  <p><span class="underline">What's to expect?</span><br><%= @raclette.description %></p>
-  <p><span class="underline">How many guests are expected?</span><br><%= @raclette.number_of_guests %></p>
-  <p>
-  <ul>
-      <span class="underline">Upcoming bookings:</span><br><% @raclette.bookings.each do |booking| %>
-        <% if current_user == booking.user %>
-        <li>
-          <%= booking.date.strftime("Booked on %B %d, %Y") %> -- <%= booking.description %> -- <%= booking.user.first_name %>
-          <%= link_to 'Edit my booking', edit_raclette_booking_path(@raclette, booking) %>
-        <% end %>
-      </li>
-      <% end %>
-  </ul>
-  </p>
-  <p>
-  <ul>
-      <span class="underline">lastest rating:</span><br><% @raclette.bookings.each do |booking|
-        booking.reviews.each do |review| %>
-          <li>
-            <%= review.description %> -- <%= review.rating %> -- <%= booking.user.first_name %>
-            <% if current_user == review.user %>
-              <%= link_to 'Edit my review', edit_booking_review_path(booking, review) %>
-            <% end %>
-          </li>
-          <% end %>
-        <% end %>
-  </ul>
-  </p>
-  <% if current_user == @raclette.user %>
-    <%= link_to "Edit", edit_raclette_path, class: "btn btn-info" %>
-  <% end %>
-  <hr>
-  <p>This one looks good! Why don't you book at <strong><%= @raclette.user.first_name  %></strong>?</p>
-  <%= render "bookings/form", booking: @booking, raclette: @raclette  %>
-      </div>
+    </div>
+    <div class="raclette-images-map">
+      <% if @raclette.photo.attached? %>
+      <%= cl_image_tag @raclette.photo.key %>
+    <% end %>
+    </div>
+  </div>
+  <div class="raclette-content">
+    <div class="raclette-content-description">
+      <p><span class="underline">What's to expect?</span><br><%= @raclette.description %></p>
+      <p><span class="underline">How many guests are expected?</span><br><%= @raclette.number_of_guests %></p>
+    </div>
+    <div class="raclette-content-booking">
+       <%= render "bookings/form", booking: @booking, raclette: @raclette  %>
+    </div>
+  </div>
+
+  <%# <% if current_user == review.user %>
+    <%# <%= link_to 'Edit my review', edit_booking_review_path(booking, review) %>
+  <%# <% end %>
+
+   <%# <% if current_user == @raclette.user %>
+    <%# <%= link_to "Edit", edit_raclette_path, class: "btn btn-info" %>
+  <%# <% end %>
 </div>
