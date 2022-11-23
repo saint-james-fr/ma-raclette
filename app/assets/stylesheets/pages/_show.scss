@@ -13,3 +13,45 @@ ul {
   padding: 0;
   margin: 0
 }
+
+.raclette-infos-subtitle {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  :first-child {
+    margin-right: 10px ;
+  }
+}
+
+.raclette-images {
+ display: flex;
+ justify-content: space-between;
+}
+
+.raclette-images > div {
+  max-width: 48%;
+  border-radius: 5px;
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  :first-child img {
+    margin-right: 2vw;
+  }
+}
+
+.raclette-content {
+  display: flex;
+}
+
+.raclette-content-description {
+  flex-grow: 1;
+}
+
+.raclette-content-booking {
+  margin-right: 4vw;
+}
