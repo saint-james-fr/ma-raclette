@@ -5,7 +5,16 @@
     </div>
     <div class="raclette-infos-subtitle">
       <p><i class="fa-solid fa-location-pin"></i> <%= @raclette.location %></p>
-      <p><i class="fa-solid fa-star"></i>4.2</p>
+      <% sum = 0  %>
+      <p><i class="fa-solid fa-star"></i>
+      <% @raclette.bookings.each do |booking| %>
+        <% booking.reviews.each do |review| %>
+          <% sum += review.rating %>
+          <% end %>
+        <% end %>
+      <% sum /= @raclette.reviews.all.count %>
+      <%= sum.truncate(2) %>
+      </p>
     </div>
   </div>
   <div class="raclette-images">
