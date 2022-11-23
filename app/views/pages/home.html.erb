@@ -1,18 +1,36 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.enviedebienmanger.fr/sites/default/files/fotolia_58978138_s.jpg);">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.marciatack.fr/wp-content/uploads/2021/01/raclette-fromage-1-sur-1.jpg);">
   <div class="container">
-    <h1>Ma Raclette</h1>
-    <p>Lorem Ipsum.</p>
+    <div class="card-banner">
+      <div class="card-banner-title">
+        <h1>Ma Raclette</h1>
+        <p>Say cheese!</p>
+      </div>
+      <div class="card-banner-logo">
+        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/9/9a/Logo_D%C3%A9partement_Savoie.svg/695px-Logo_D%C3%A9partement_Savoie.svg.png?20180409184647" alt="Savoie's Logo">
+      </div>
+      <div class="card-banner-cta">
+        <%= link_to "Find a raclette now!", raclettes_path, class: "btn btn-ghost main-button" %>
+      </div>
+    </div>
   </div>
 </div>
-<div class="container">
-  <% Raclette.last(5).reverse.each do |raclette| %>
-    <ul>
-      <h2><%= raclette.title %></h2>
-      <li><%= raclette.photo %></li>
-      <li><%= raclette.location %></li>
-      <li><%= raclette.number_of_guests %></li>
-      <li><%= raclette.description %></li>
-      <li><%= raclette.user.avatar %></li>
-    </ul>
-  <% end %>
+<div class="container mt-5 mb-5">
+  <h2>Browse some of the last added raclettes 🧀</h2>
+  <div class="cards-grid-home">
+    <% Raclette.last(5).reverse.each do |raclette| %>
+      <%= link_to raclette_path(raclette) do %>
+        <div class="card-grid-home" >
+          <h2><%= raclette.title %></h2>
+          <p><i class="fa-solid fa-location-pin"></i> <%= raclette.location %></p>
+          <p><i class="fa-solid fa-person"></i> <i class="fa-solid fa-person-dress"></i> <%= raclette.number_of_guests %> persons allowed</p>
+        </div>
+          <%# <><%= raclette.title %>
+          <%# <><%= raclette.photo %>
+          <%# <><%= raclette.location %>
+          <%# <><%= raclette.number_of_guests %>
+          <%# <><%= raclette.description %>
+          <%# <><%= raclette.user.avatar %>
+        <% end %>
+    <% end %>
+  </div>
 </div>
