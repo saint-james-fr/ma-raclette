@@ -4,7 +4,8 @@
     <h1><%= @raclette.title %></h1>
     </div>
     <div class="raclette-infos-subtitle">
-      <p><i class="fa-solid fa-location-pin"></i> <%= @raclette.location %></p>
+      <p> hosted by <%= @raclette.user.first_name %> <%= @raclette.user.last_name %>
+      <i class="fa-solid fa-location-pin"></i> <%= @raclette.location %></p>
       <!--  ********** UNLESS TEST IF EMPTY REVIEWS  **********  -->
       <% unless @raclette.reviews.empty? %>
         <p><i class="fa-solid fa-star"></i>

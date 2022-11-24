@@ -74,6 +74,7 @@
         <% end %>
       </div>
       <div id="dashboard_bookings" class="display-none">
+       <h2>My Bookings</h2>
         <% unless current_user.bookings.empty? %>
           <div class="pending_bookings">
             <h2>Pending bookings</h2>
@@ -90,11 +91,11 @@
                     <li>Status: <%= booking.status %></li>
                     <li>Date: <%= booking.date %></li>
                     <li>Owner : <%= booking.raclette.user.first_name %></li>
-                     <% if policy(@raclette).destroy? %>
-                      <%= link_to "Cancel",
-                      raclette_path(@raclette),
-                      class: "main-button",
-                      data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir supprimer cet événement ?"} %>
+                    <% if policy(booking).destroy? %>
+                    <%= link_to "Cancel",
+                    booking_path(booking),
+                    class: "btn btn-danger",
+                    data: {turbo_method: :delete, turbo_confirm: "Are your sure you want to delete this booking?"} %>
                     <% end %>
 
                   </div>
@@ -113,6 +114,12 @@
                     <li>Date: <%= booking.date %></li>
                     <li>Owner : <%= booking.raclette.user.first_name %></li>
                     <li>Raclette : <%= booking.raclette.title %></li>
+                    <% if policy(booking).destroy? %>
+                    <%= link_to "Cancel",
+                    booking_path(booking),
+                    class: "btn btn-danger",
+                    data: {turbo_method: :delete, turbo_confirm: "Are your sure you want to delete this booking?"} %>
+                    <% end %>
                     <br>
                   </ul>
                 <% end %>

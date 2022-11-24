@@ -14,4 +14,5 @@ Rails.application.routes.draw do
       patch :declined
     end
   end
+  resources :bookings, only: :destroy
 end
