@@ -19,7 +19,7 @@
     <% end %>
       <div>
         <% if policy(@raclette).destroy? %>
-          <%= link_to "Delete",
+          <%#= link_to "Delete",
           raclette_path(@raclette),
           class: "main-button",
           data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir supprimer cet événement ?"} %>

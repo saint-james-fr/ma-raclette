@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_raclette, only: %i[new create edit update destroy show]
-  before_action :set_booking, only: %i[edit update show]
+  before_action :set_booking, only: %i[edit update show accepted declined]
 
   def new
     @booking = Booking.new
@@ -13,8 +13,10 @@ class BookingsController < ApplicationController
     @booking.raclette = @raclette
     authorize @booking
     if @booking.save
-      redirect_to raclette_booking_path(@raclette, @booking)
+      redirect_to raclette_path(@raclette)
+      flash.alert = "Booking added."
     else
+      flash.alert = "Please verify all inputs"
       render "raclettes/show", status: :unprocessable_entity
     end
   end
@@ -35,6 +37,20 @@ class BookingsController < ApplicationController
 
   def show
     authorize @booking
+  end
+
+  def accepted
+    authorize @booking
+    if @booking.update(status: "accepted")
+      redirect_to dashboard_path
+    end
+  end
+
+  def declined
+    authorize @booking
+    if @booking.update(status: "declined")
+      redirect_to dashboard_path
+    end
   end
 
   private
