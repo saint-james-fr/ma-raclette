@@ -4,5 +4,6 @@ class PagesController < ApplicationController
   end
 
   def dashboard
+    @review = Review.new
   end
 end

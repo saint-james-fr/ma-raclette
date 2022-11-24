@@ -2,81 +2,110 @@
   <div class="sidebar w-25 vh-100">
   </div>
   <div class="container">
-    <div id="dashboard_raclettes">
-    <% unless current.user.raclettes.empty? %>
-    <% else %>
-    <% end %>
-    </div>
-    <div id="dashboard_bookings">
-    </div>
-    <div id="dashboard_profile">
+    <div class="dashboard-options-container">
+      <div id="dashboard_raclettes">
+      </div>
+      <div id="dashboard_bookings">
+        <div class="pending_bookings">
+          <h2>Pending bookings</h2>
+          <% current_user.bookings.each do |booking| %>
+            <% if booking.date < Date.today %>
+              <% if booking.status == 'pending' %>
+                <div class="card-product">
+                  <%= cl_image_tag booking.raclette.photo.key %>
+                  <h2><%= booking.raclette.title %></h2>
+                  <div class="content-localisation">
+                    <%= booking.raclette.location %>
+                    <%= cl_image_tag booking.raclette.user.avatar.key, class: "avatar" %>
+                  </div>
+                  <li>Status: <%= booking.status %></li>
+                  <li>Date: <%= booking.date %></li>
+                  <li>Owner : <%= booking.raclette.user.first_name %></li>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="accepted_bookings">
+          <h2>Accepted bookings</h2>
+          <% current_user.bookings.each do |booking| %>
+            <% if booking.date < Date.today %>
+              <% if booking.status == 'accepted' %>
+                <ul>
+                  <li>Status: <%= booking.status %></li>
+                  <li>Description: <%= booking.description %></li>
+                  <li>Date: <%= booking.date %></li>
+                  <li>Owner : <%= booking.raclette.user.first_name %></li>
+                  <li>Raclette : <%= booking.raclette.title %></li>
+                  <br>
+                </ul>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="declined_bookings">
+          <h2>Declined bookings</h2>
+          <% current_user.bookings.each do |booking| %>
+            <% if booking.date < Date.today %>
+              <% if booking.status == 'declined' %>
+                <ul>
+                  <li>Status: <%= booking.status %></li>
+                  <li>Description: <%= booking.description %></li>
+                  <li>Date: <%= booking.date %></li>
+                  <li>Owner : <%= booking.raclette.user.first_name %></li>
+                  <li>Raclette : <%= booking.raclette.title %></li>
+                  <br>
+                </ul>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="reviews_bookings">
+          <h2>Bookings to review</h2>
+          <% current_user.bookings.each do |booking| %>
+            <% if booking.date < Date.today %>
+              <% if booking.status == 'accepted' %>
+                <ul>
+                  <li>Status: <%= booking.status %></li>
+                  <li>Description: <%= booking.description %></li>
+                  <li>Date: <%= booking.date %></li>
+                  <li>Owner : <%= booking.raclette.user.first_name %></li>
+                  <li>Raclette : <%= booking.raclette.title %></li>
+                  <br>
+                </ul>
+                <button class="modal-button" data-bs-toggle="modal" data-bs-target="#reviewsModal">Review</button>
+                  <!--  **********  MODAL REVIEW  **********  -->
+                  <div class="modal fade" id="reviewsModal" tabindex="-1" aria-labelledby="reviewsModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="reviewsModalLabel">'s reviews</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        <%= simple_form_for [booking, @review] do |f| %>
+                            <%= f.input :description %>
+                            <%= f.input :rating %>
+                            <%= f.submit %>
+                        <% end %>
+                          <%#= render :new, booking: @booking, review: @review  %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--  ********** END OF MODAL REVIEW  **********  -->
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div id="dashboard_profile">
+      </div>
     </div>
   </div>
 </div>
 
 
 <p>
-
-My raclettes and users requests
-  - Si j'ai récrée au moins une raclette // unless current_user.raclettes.empty?
-    - As a current_user.raclettes.each, je peux voir toutes les raclettes que j'ai créé
-      - Pour chaque raclette, //unless raclette.bookings.empty?
-        - je veux voir raclette.bookings.each do |booking|
-          - booking.user.first_name
-          - booking.user.last_name
-          - booking.user.avatar
-          - booking.title
-          - booking.description
-          - booking.date
-          --> Peut-être dans une modal pour gaspard (peut-êeeeetre)
-        - Je veux accepter ou refuser le booking
-          - simple form edit sur booking x2
-        - Une fois le choix fait, le form disparait et la div change de couleur
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        My bookings =
-- current_user.bookings.each |booking|
-  if booking.date > Date.today
-    if booking.status == "pending"
-      - div pending booking
-        - booking.status
-        - booking.title
-        - booking.date
-        - booking.user
-        - booking.raclette.title
-        - booking.raclette.photo
-      - div accepted booking
-      - div declined booking
-  else
-    div booking accepted && passés
-      - Ajouter un form pour review this booking en modal
-  end
-My infos
-  - show + edit
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.string "first_name"
-    t.string "last_name"
-    t.text "description"
-    t.string "phone_number"
-    t.string "avatar"
-Réduire
-
 
 </p>
