@@ -5,7 +5,7 @@
     </div>
     <div class="raclette-infos-subtitle">
       <p><i class="fa-solid fa-location-pin"></i> <%= @raclette.location %></p>
-      <%# Rating calculation %>
+      <!--  ********** UNLESS TEST IF EMPTY REVIEWS  **********  -->
       <% unless @raclette.reviews.empty? %>
         <p><i class="fa-solid fa-star"></i>
         <% sum = 0  %>
@@ -13,9 +13,31 @@
           <% sum += review.rating %>
           <% end %>
         <% sum /= @raclette.reviews.all.count %>
-        <%= sum.truncate(2) %>
+        <%= sum.truncate(2) %> • <button class="modal-button" data-bs-toggle="modal" data-bs-target="#reviewsModal"><%= @raclette.reviews.all.count %> comments</button>
+        <!--  **********  MODAL REVIEW  **********  -->
+        <div class="modal fade" id="reviewsModal" tabindex="-1" aria-labelledby="reviewsModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="reviewsModalLabel"><%= @raclette.title %>'s reviews</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <% @raclette.reviews.each do |review| %>
+                  <div class="review-box">
+                    <i class="fa-solid fa-star"></i> <%= review.rating %> from <%= review.user.first_name %>
+                    <br>
+                    <%= review.description %>
+                    <br>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--  ********** END OF MODAL REVIEW  **********  -->
         </p>
-      <% end %>
+      <% end %> <!--  ********** END OF UNLESS STATEMENT  **********  -->
     </div>
   </div>
   <div class="raclette-images">
