@@ -1,5 +1,6 @@
 .main-button{
   background-color: #de9f20;
+  border: none;
   color: white;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 5px;
@@ -10,15 +11,27 @@
   }
 }
 
-.secondary-button{
-  background-color: white;
-  color: #de9f20;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  border: 1px solid #de9f20;
-  border-radius: 5px;
-  padding: 7px;
-  text-decoration: none;
+.btn-navbar{
+  color:white;
+  background-color: #de9f20;
   &:hover{
+    background-color: #de9f20 !important;
     color: white !important;
   }
+}
+.secondary-button{
+  background-color:white;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-bottom: 0px;
+  padding-top: 0px;
+  margin-left: 0px;
+  color:#de9f20;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border: 1px solid #de9f20;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 5px;
+  text-decoration: none;
+
 }
