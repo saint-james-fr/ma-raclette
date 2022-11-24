@@ -182,6 +182,41 @@
   margin-top: 8px;
 }
 
-.card-product .card-product-infos {
-  padding: 16px;
+.card-product-booking {
+  padding-left: 20px;
+  padding-right: 20px;
+  flex-grow: 1;
+}
+
+.card-product-head {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-product-status {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.card-product-status .avatar {
+  width: 30px;
+  height: 30px;
+}
+
+.status-pending {
+  background-color: #8080807a;
+  color: white;
+  padding: 6px 15px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.card-product-details p {
+  font-style: italic;
+}
+
+.big-eater {
+  margin-top: 4px;
+  font-size: 12px;
 }
