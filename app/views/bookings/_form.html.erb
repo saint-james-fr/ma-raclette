@@ -11,12 +11,12 @@
                   flatpickr_target: 'startDateInput',
               } } %>
       <%= f.input :description %>
-      <%= f.button :submit, class: "btn btn-primary" %>
+      <%= f.button :submit, class: "main-button" %>
     <% end %>
       <div>
         <% if policy(@raclette).destroy? %>
           <%= link_to "Delete",
           raclette_path(@raclette),
-          class: "btn btn-danger",
+          class: "main-button",
           data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir supprimer cet événement ?"} %>
         <% end %>

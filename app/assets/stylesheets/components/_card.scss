@@ -37,6 +37,46 @@
   }
 }
 
+.cards-grid-index {
+  display: grid;
+  grid-template-columns: 1fr 1fr ;
+  grid-gap: 16px;
+}
+.card-grid-index img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 20px;
+}
+.card-grid-index {
+  background-size: cover;
+  background-position: center;
+  height: auto;
+  display: block;
+  padding: 20px;
+}
+
+.card-grid-index h2 {
+  font-size: 1.2rem;
+  padding-top: 8px;
+  padding-bottom: 0px;
+  font-weight: bold;
+}
+
+.card-grid-index p {
+  padding: 0;
+  margin: 0;
+  color: #545767;
+}
+
+.card-grid-index img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+
 
 .cards-grid-home {
   display: grid;
