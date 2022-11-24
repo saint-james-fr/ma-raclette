@@ -1,0 +1,82 @@
+<div class="supercontainer d-flex">
+  <div class="sidebar w-25 vh-100">
+  </div>
+  <div class="container">
+    <div id="dashboard_raclettes">
+    <% unless current.user.raclettes.empty? %>
+    <% else %>
+    <% end %>
+    </div>
+    <div id="dashboard_bookings">
+    </div>
+    <div id="dashboard_profile">
+    </div>
+  </div>
+</div>
+
+
+<p>
+
+My raclettes and users requests
+  - Si j'ai récrée au moins une raclette // unless current_user.raclettes.empty?
+    - As a current_user.raclettes.each, je peux voir toutes les raclettes que j'ai créé
+      - Pour chaque raclette, //unless raclette.bookings.empty?
+        - je veux voir raclette.bookings.each do |booking|
+          - booking.user.first_name
+          - booking.user.last_name
+          - booking.user.avatar
+          - booking.title
+          - booking.description
+          - booking.date
+          --> Peut-être dans une modal pour gaspard (peut-êeeeetre)
+        - Je veux accepter ou refuser le booking
+          - simple form edit sur booking x2
+        - Une fois le choix fait, le form disparait et la div change de couleur
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        My bookings =
+- current_user.bookings.each |booking|
+  if booking.date > Date.today
+    if booking.status == "pending"
+      - div pending booking
+        - booking.status
+        - booking.title
+        - booking.date
+        - booking.user
+        - booking.raclette.title
+        - booking.raclette.photo
+      - div accepted booking
+      - div declined booking
+  else
+    div booking accepted && passés
+      - Ajouter un form pour review this booking en modal
+  end
+My infos
+  - show + edit
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.string "first_name"
+    t.string "last_name"
+    t.text "description"
+    t.string "phone_number"
+    t.string "avatar"
+Réduire
+
+
+</p>
