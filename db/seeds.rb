@@ -10,7 +10,6 @@ user1 = {
   first_name: "Anne",
   last_name: "Ly",
   password: "annely",
-  avatar: "https://picsum.photos/200",
   password_confirmation: "annely",
   description: "hey, my name is Anne and I love raclettes",
   email: "anne@ma-raclette.com",
@@ -19,7 +18,6 @@ user2 = {
   first_name: "Pierre",
   last_name: "Petel",
   password: "pierrepetel",
-  avatar: "https://picsum.photos/200",
   password_confirmation: "pierrepetel",
   description: "hey, i'm Pierre, I love to steal keys and of course, I love cheese!",
   email: "pierre@ma-raclette.com",
@@ -28,7 +26,6 @@ user3 = {
   first_name: "Maxence",
   last_name: "Robinet",
   password: "maxencerobinet",
-  avatar: "https://picsum.photos/200",
   password_confirmation: "maxencerobinet",
   description: "hey, i'm Maxence, I can eat raclettes on every seasons and I'm also a codeur fou",
   email: "maxence@ma-raclette.com",
@@ -38,7 +35,6 @@ user4 = {
   first_name: "Benjamin",
   last_name: "Doberset",
   password: "benjamindoberset",
-  avatar: "https://picsum.photos/200",
   password_confirmation: "benjamindoberset",
   description: "hey, i'm Benjamin, I can batch cook some raclettes for my lunch at work!",
   email: "benjamin@ma-raclette.com",
@@ -48,7 +44,6 @@ user5 = {
   first_name: "Gaspard",
   last_name: "Fauchille",
   password: "gaspardfauchille",
-  avatar: "https://picsum.photos/200",
   password_confirmation: "gaspardfauchille",
   description: "hey, i'm Gaspard and I put some maroille on my raclette",
   email: "gaspard@ma-raclette.com",
@@ -59,7 +54,10 @@ users_options = [user1, user2, user3, user4, user5]
 puts ">"
 puts "starts creating users"
 users_options.each do |user_option|
-  User.create!(user_option)
+  file = URI.open("https://picsum.photos/200")
+  user = User.new(user_option)
+  user.avatar.attach(io: file, filename: "nes#{rand(1..1000000)}.png", content_type: "image/png")
+  user.save
 end
 puts ">"
 puts "done!"
