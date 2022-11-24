@@ -16,6 +16,7 @@ class BookingsController < ApplicationController
       redirect_to raclette_path(@raclette)
       flash.alert = "Booking added."
     else
+      flash.alert = "Please verify all inputs"
       render "raclettes/show", status: :unprocessable_entity
     end
   end

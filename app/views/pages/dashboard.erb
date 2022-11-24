@@ -1,9 +1,22 @@
 <div class="supercontainer d-flex">
-  <div class="sidebar w-25 vh-100">
+  <div class="sidebar w-25">
+    <div class="sidebar-elements" data-controller="dashboard-sidebar">
+      <ul>
+        <li data-action = "click->dashboard-sidebar#activeRaclette">
+          My Raclettes
+        </li>
+        <li data-action = "click->dashboard-sidebar#activeBookings">
+          My Bookings
+        </li>
+        <li data-action = "click->dashboard-sidebar#activeProfile">
+          My Profile
+        </li>
+      </ul>
+    </div>
   </div>
   <div class="container">
     <div class="dashboard-options-container">
-      <div id="dashboard_raclettes">
+      <div id="dashboard_raclettes" class="display">
         <h2>My Raclettes</h2>
         <% unless current_user.raclettes.empty? %>
           <% current_user.raclettes.each do |raclette| %>
@@ -23,7 +36,7 @@
               <% end %>
             </div>
           <% end %>
-            <% unless current_user.requests.empty? %>
+            <% if current_user.requests.any? {|request| request.status == "pending"}  %>
             <h2>My pending requests</h2>
               <% current_user.requests.each do |request| %>
                 <% if request.status == "pending" %>
@@ -43,11 +56,11 @@
           <p>You don't have any raclettes yet</p>
         <% end %>
       </div>
-      <div id="dashboard_bookings">
+      <div id="dashboard_bookings" class="display-none">
         <div class="pending_bookings">
           <h2>Pending bookings</h2>
           <% current_user.bookings.each do |booking| %>
-            <% if booking.date < Date.today %>
+            <% if booking.date > Date.today %>
               <% if booking.status == 'pending' %>
                 <div class="card-product">
                   <%= cl_image_tag booking.raclette.photo.key %>
@@ -67,7 +80,7 @@
         <div class="accepted_bookings">
           <h2>Accepted bookings</h2>
           <% current_user.bookings.each do |booking| %>
-            <% if booking.date < Date.today %>
+            <% if booking.date > Date.today %>
               <% if booking.status == 'accepted' %>
                 <ul>
                   <li>Status: <%= booking.status %></li>
@@ -84,7 +97,7 @@
         <div class="declined_bookings">
           <h2>Declined bookings</h2>
           <% current_user.bookings.each do |booking| %>
-            <% if booking.date < Date.today %>
+            <% if booking.date > Date.today %>
               <% if booking.status == 'declined' %>
                 <ul>
                   <li>Status: <%= booking.status %></li>
@@ -137,7 +150,7 @@
           <% end %>
         </div>
       </div>
-      <div id="dashboard_profile">
+      <div id="dashboard_profile" class="display-none">
       </div>
     </div>
   </div>
