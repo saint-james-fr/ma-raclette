@@ -13,7 +13,8 @@ class BookingsController < ApplicationController
     @booking.raclette = @raclette
     authorize @booking
     if @booking.save
-      redirect_to raclette_booking_path(@raclette, @booking)
+      redirect_to raclette_path(@raclette)
+      flash.alert = "Booking added."
     else
       render "raclettes/show", status: :unprocessable_entity
     end
