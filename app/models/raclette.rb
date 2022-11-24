@@ -5,6 +5,8 @@ class Raclette < ApplicationRecord
 
   validates :location, presence: true
   validates :title, presence: true
+  validates :number_of_guests, presence: true
+
 
   has_one_attached :photo
 

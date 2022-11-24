@@ -39,6 +39,12 @@ class BookingsController < ApplicationController
     authorize @booking
   end
 
+  def destroy
+    authorize @booking
+    @booking.destroy
+    redirect_to dashboard_path, status: :see_other
+  end
+
   def accepted
     authorize @booking
     if @booking.update(status: "accepted")

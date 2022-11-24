@@ -5,6 +5,10 @@ class Booking < ApplicationRecord
 
   validates :date, presence: true
   validates :description, presence: true
+  validates :small_eater, numericality: { greater_than_or_equal_to: 0 }
+  validates :normal_eater, numericality: { greater_than_or_equal_to: 0 }
+  validates :big_eater, numericality: { greater_than_or_equal_to: 0 }
+  validates :veggies, numericality: { greater_than_or_equal_to: 0 }
   validates :status, acceptance: { accept: ['pending', 'accepted', 'declined'] }
   scope :pending, -> { where(status: "pending") }
   scope :accepted, -> { where(status: "accepted") }

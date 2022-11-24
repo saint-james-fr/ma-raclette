@@ -9,18 +9,12 @@
               input_html: {
                 data: {
                   flatpickr_target: 'startDateInput',
-              } } %>
-      <%= f.input :description %>
-      <%= f.input :big_eater %>
-      <%= f.input :normal_eater %>
-      <%= f.input :small_eater %>
-      <%= f.input :veggies %>
-      <%= f.button :submit, class: "main-button" %>
+              },
+                :placeholder => "Pick a date" } %>
+      <%= f.input :description, :input_html => { :placeholder => "Tell #{@raclette.user.first_name} what's your plan" } %>
+      <%= f.input :big_eater, :input_html => { :min => 0 }%>
+      <%= f.input :normal_eater, :input_html => { :min => 0 } %>
+      <%= f.input :small_eater, :input_html => { :min => 0 } %>
+      <%= f.input :veggies, :input_html => { :min => 0 } %>
+      <%= f.button :submit, class: "main-button w-100" %>
     <% end %>
-      <div>
-        <% if policy(@raclette).destroy? %>
-          <%#= link_to "Delete",
-          raclette_path(@raclette),
-          class: "main-button",
-          data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir supprimer cet événement ?"} %>
-        <% end %>
