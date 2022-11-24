@@ -20,10 +20,14 @@
   </div>
   <div class="raclette-images">
     <div class="raclette-images-picture">
-      <%= image_tag @raclette.photo %>
+      <% if @raclette.photo.attached? %>
+      <%= cl_image_tag @raclette.photo.key %>
+    <% end %>
     </div>
     <div class="raclette-images-map">
-      <%= image_tag @raclette.photo %>
+      <% if @raclette.photo.attached? %>
+      <%= cl_image_tag @raclette.photo.key %>
+    <% end %>
     </div>
   </div>
   <div class="raclette-content">

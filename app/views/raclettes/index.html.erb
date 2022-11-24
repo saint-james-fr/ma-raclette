@@ -8,7 +8,7 @@
   <% @raclettes.each do |raclette| %>
     <%= link_to raclette_path(raclette) do%>
       <div class="card-product">
-        <img src="<%= raclette.photo %>"/>
+        <%=cl_image_tag raclette.photo.key %>
         <div class="card-product-infos">
           <h2><%= raclette.title %></h2>
           <p><%= raclette.description  %></p>

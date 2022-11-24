@@ -1,4 +1,6 @@
+require "open-uri"
 # Data Reinitialization - Don't change the order :)
+Review.destroy_all
 Booking.destroy_all
 Raclette.destroy_all
 User.destroy_all
@@ -68,8 +70,7 @@ raclette_1 = {
   user_id: User.first.id,
   title: "Anne's Famous Raclette",
   description: "Il paraît qu'il y aura 1,5kg de fromage... et de la salade!",
-  number_of_guests: 6,
-  photo: "https://images.unsplash.com/photo-1635924210828-ccbe493b6e1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+  number_of_guests: 6
 }
 
 raclette_2 = {
@@ -77,8 +78,7 @@ raclette_2 = {
   user_id: User.all[3].id,
   title: "Raclette de banlieue",
   description: "Une raclette simple pour les gens simples",
-  number_of_guests: 3,
-  photo: "https://lapetitecave.net/wp-content/uploads/2020/11/template_main-600x498.jpg"
+  number_of_guests: 3
 }
 
 raclette_options = [raclette_1, raclette_2]
@@ -86,7 +86,10 @@ raclette_options = [raclette_1, raclette_2]
 puts ">"
 puts "starts creating raclettes"
 raclette_options.each do |raclette_option|
-  Raclette.create!(raclette_option)
+  file = URI.open("https://images.unsplash.com/photo-1635924210828-ccbe493b6e1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")
+  raclette = Raclette.new(raclette_option)
+  raclette.photo.attach(io: file, filename: "nes#{rand(1..1000000)}.png", content_type: "image/png")
+  raclette.save
 end
 puts ">"
 puts "done!"
