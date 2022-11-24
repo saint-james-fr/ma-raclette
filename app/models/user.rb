@@ -10,4 +10,5 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_many :raclettes
   has_many :bookings
+  has_many :requests, through: :raclettes, source: :bookings
 end

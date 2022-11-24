@@ -1,15 +1,63 @@
 <div class="supercontainer d-flex">
-  <div class="sidebar w-25 vh-100">
+  <div class="sidebar w-25">
+    <div class="sidebar-elements" data-controller="dashboard-sidebar">
+      <ul>
+        <li data-action = "click->dashboard-sidebar#activeRaclette">
+          My Raclettes
+        </li>
+        <li data-action = "click->dashboard-sidebar#activeBookings">
+          My Bookings
+        </li>
+      </ul>
+    </div>
   </div>
   <div class="container">
     <div class="dashboard-options-container">
-      <div id="dashboard_raclettes">
+      <div id="dashboard_raclettes" class="display">
+        <h2>My Raclettes</h2>
+        <% unless current_user.raclettes.empty? %>
+          <% current_user.raclettes.each do |raclette| %>
+          <%= link_to raclette_path(raclette) do %>
+            <div class="dashboard-raclette-card card-product">
+              <%= cl_image_tag raclette.photo.key %>
+              <%= raclette.title %>
+              <%= raclette.location %>
+              <%= raclette.description %>
+              <%= raclette.number_of_guests %>
+              <% if current_user.requests.all? {|request| request.status == "accepted"} %>
+                All bookings confirmed
+              <% elsif current_user.requests.any? {|request| request.status == "pending"} %>
+                Some bookings need confirmation
+              <% else %>
+                No bookings yet
+              <% end %>
+            </div>
+          <% end %>
+            <% if current_user.requests.any? {|request| request.status == "pending"}  %>
+            <h2>My pending requests</h2>
+              <% current_user.requests.each do |request| %>
+                <% if request.status == "pending" %>
+                  <div class="dashboard-request-card card-product">
+                    <%= cl_image_tag request.user.avatar.key %><%= request.user.first_name %> <%= request.user.last_name %>
+                    <%= request.date %>
+                    <%= request.description %>
+                    <%= request.status %>
+                    <%= link_to "Accept", accepted_booking_path(request), data: {turbo_method: :patch} %>
+                    <%= link_to "Decline", declined_booking_path(request), data: {turbo_method: :patch} %>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% else %>
+          <p>You don't have any raclettes yet</p>
+        <% end %>
       </div>
-      <div id="dashboard_bookings">
+      <div id="dashboard_bookings" class="display-none">
         <div class="pending_bookings">
           <h2>Pending bookings</h2>
           <% current_user.bookings.each do |booking| %>
-            <% if booking.date < Date.today %>
+            <% if booking.date > Date.today %>
               <% if booking.status == 'pending' %>
                 <div class="card-product">
                   <%= cl_image_tag booking.raclette.photo.key %>
@@ -29,7 +77,7 @@
         <div class="accepted_bookings">
           <h2>Accepted bookings</h2>
           <% current_user.bookings.each do |booking| %>
-            <% if booking.date < Date.today %>
+            <% if booking.date > Date.today %>
               <% if booking.status == 'accepted' %>
                 <ul>
                   <li>Status: <%= booking.status %></li>
@@ -46,7 +94,7 @@
         <div class="declined_bookings">
           <h2>Declined bookings</h2>
           <% current_user.bookings.each do |booking| %>
-            <% if booking.date < Date.today %>
+            <% if booking.date > Date.today %>
               <% if booking.status == 'declined' %>
                 <ul>
                   <li>Status: <%= booking.status %></li>
@@ -78,7 +126,7 @@
                   <div class="modal fade" id="reviewsModal" tabindex="-1" aria-labelledby="reviewsModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                       <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-adader">
                           <h1 class="modal-title fs-5" id="reviewsModalLabel">'s reviews</h1>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
@@ -99,12 +147,10 @@
           <% end %>
         </div>
       </div>
-      <div id="dashboard_profile">
-      </div>
+
     </div>
   </div>
 </div>
-
 
 <p>
 

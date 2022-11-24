@@ -9,5 +9,9 @@ Rails.application.routes.draw do
 
   resources :bookings, only: [] do
     resources :reviews, except: [:destroy]
+    member do # crée une route custom inside bookings
+      patch :accepted
+      patch :declined
+    end
   end
 end
