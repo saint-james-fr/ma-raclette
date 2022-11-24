@@ -1,0 +1,111 @@
+<div class="supercontainer d-flex">
+  <div class="sidebar w-25 vh-100">
+  </div>
+  <div class="container">
+    <div class="dashboard-options-container">
+      <div id="dashboard_raclettes">
+      </div>
+      <div id="dashboard_bookings">
+        <div class="pending_bookings">
+          <h2>Pending bookings</h2>
+          <% current_user.bookings.each do |booking| %>
+            <% if booking.date < Date.today %>
+              <% if booking.status == 'pending' %>
+                <div class="card-product">
+                  <%= cl_image_tag booking.raclette.photo.key %>
+                  <h2><%= booking.raclette.title %></h2>
+                  <div class="content-localisation">
+                    <%= booking.raclette.location %>
+                    <%= cl_image_tag booking.raclette.user.avatar.key, class: "avatar" %>
+                  </div>
+                  <li>Status: <%= booking.status %></li>
+                  <li>Date: <%= booking.date %></li>
+                  <li>Owner : <%= booking.raclette.user.first_name %></li>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="accepted_bookings">
+          <h2>Accepted bookings</h2>
+          <% current_user.bookings.each do |booking| %>
+            <% if booking.date < Date.today %>
+              <% if booking.status == 'accepted' %>
+                <ul>
+                  <li>Status: <%= booking.status %></li>
+                  <li>Description: <%= booking.description %></li>
+                  <li>Date: <%= booking.date %></li>
+                  <li>Owner : <%= booking.raclette.user.first_name %></li>
+                  <li>Raclette : <%= booking.raclette.title %></li>
+                  <br>
+                </ul>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="declined_bookings">
+          <h2>Declined bookings</h2>
+          <% current_user.bookings.each do |booking| %>
+            <% if booking.date < Date.today %>
+              <% if booking.status == 'declined' %>
+                <ul>
+                  <li>Status: <%= booking.status %></li>
+                  <li>Description: <%= booking.description %></li>
+                  <li>Date: <%= booking.date %></li>
+                  <li>Owner : <%= booking.raclette.user.first_name %></li>
+                  <li>Raclette : <%= booking.raclette.title %></li>
+                  <br>
+                </ul>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="reviews_bookings">
+          <h2>Bookings to review</h2>
+          <% current_user.bookings.each do |booking| %>
+            <% if booking.date < Date.today %>
+              <% if booking.status == 'accepted' %>
+                <ul>
+                  <li>Status: <%= booking.status %></li>
+                  <li>Description: <%= booking.description %></li>
+                  <li>Date: <%= booking.date %></li>
+                  <li>Owner : <%= booking.raclette.user.first_name %></li>
+                  <li>Raclette : <%= booking.raclette.title %></li>
+                  <br>
+                </ul>
+                <button class="modal-button" data-bs-toggle="modal" data-bs-target="#reviewsModal">Review</button>
+                  <!--  **********  MODAL REVIEW  **********  -->
+                  <div class="modal fade" id="reviewsModal" tabindex="-1" aria-labelledby="reviewsModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="reviewsModalLabel">'s reviews</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        <%= simple_form_for [booking, @review] do |f| %>
+                            <%= f.input :description %>
+                            <%= f.input :rating %>
+                            <%= f.submit %>
+                        <% end %>
+                          <%#= render :new, booking: @booking, review: @review  %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--  ********** END OF MODAL REVIEW  **********  -->
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div id="dashboard_profile">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<p>
+
+</p>
