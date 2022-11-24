@@ -2,18 +2,50 @@
   <div class="sidebar w-25 vh-100">
   </div>
   <div class="container">
-    <div id="dashboard_raclettes">
-    <% unless current.user.raclettes.empty? %>
-    <% else %>
-    <% end %>
-    </div>
-    <div id="dashboard_bookings">
-    </div>
-    <div id="dashboard_profile">
+    <div class="dashboard-options-container">
+      <div id="dashboard_raclettes">
+        <h2>My Raclettes</h2>
+        <% unless current_user.raclettes.empty? %>
+          <% current_user.raclettes.each do |raclette| %>
+          <div class="dashboard-raclette-card card-product">
+            <%= cl_image_tag raclette.photo.key %>
+            <%= raclette.title %>
+            <%= raclette.location %>
+            <%= raclette.description %>
+            <%= raclette.number_of_guests %>
+            <% if raclette.bookings.all? {|booking| booking.status = "accepted"} %>
+              Confirmed
+            <% else %>
+              Pending
+            <% end %>
+          </div>
+            <% unless raclette.bookings.empty? %>
+            <h2>My pending requests</h2>
+              <% raclette.bookings.each do |booking| %>
+                <div class="dashboard-request-card card-product">
+                  <%= cl_image_tag booking.user.avatar.key %><%= booking.user.first_name %> <%= booking.user.last_name %>
+                  <%= booking.date %>
+                  <%= booking.description %>
+                  <%= booking.status %>
+                  <%= link_to "Accept", accepted_booking_path(booking), data: {turbo_method: :patch} %>
+                  <%= link_to "Decline", declined_booking_path(booking), data: {turbo_method: :patch} %>
+                </div>
+              <% end %>
+            <% else %>
+
+            <% end %>
+          <% end %>
+        <% else %>
+          <p>You don't have any raclettes yet</p>
+        <% end %>
+      </div>
+      <div id="dashboard_bookings">
+      </div>
+      <div id="dashboard_profile">
+      </div>
     </div>
   </div>
 </div>
-
 
 <p>
 
