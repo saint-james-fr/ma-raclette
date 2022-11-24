@@ -8,8 +8,9 @@ class RaclettesController < ApplicationController
       {
         lat: raclette.latitude,
         lng: raclette.longitude,
-        info_window: render_to_string(partial: "info_window", locals: {raclette: raclette}),
-        image_url: helpers.asset_url("fromage")
+        infoWindow: render_to_string(partial: "info_window", locals: {raclette: raclette}),
+        image_url: helpers.asset_url("fromage"),
+        id: raclette.id
       }
     end
   end

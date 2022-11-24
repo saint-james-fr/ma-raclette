@@ -7,7 +7,7 @@
   <div class="half-container">
   <% @raclettes.each do |raclette| %>
     <%= link_to raclette_path(raclette) do%>
-      <div class="card-product">
+      <div class="card-product" data-raclette-id="<%= raclette.id %>">
         <img src="<%= raclette.photo %>"/>
         <div class="card-product-infos">
           <h2><%= raclette.title %></h2>
