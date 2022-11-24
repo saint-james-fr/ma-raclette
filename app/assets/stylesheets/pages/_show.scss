@@ -21,9 +21,9 @@ ul {
 .raclette-infos-subtitle {
   display: flex;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
 
-  :first-child {
+  p:first-of-type {
     margin-right: 10px ;
   }
 }
