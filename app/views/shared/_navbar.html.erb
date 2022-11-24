@@ -1,7 +1,7 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container">
     <%= link_to "Ma raclette", root_path , class: "navbar-brand" %>
-    <div class="d-flex">
+    <div class="d-flex" >
       <%= form_with url: raclettes_path, method: :get, class: "d-flex form-search" do %>
         <%= text_field_tag :query,
           params[:query],
@@ -10,7 +10,7 @@
         %>
         <%= submit_tag "Search", class: "secondary-button" %>
       <% end %>
-      <%= link_to "Add A Raclette", new_raclette_path, class: "main-button" %>
+      <%= link_to "Add A Raclette", new_raclette_path, class: "btn btn-navbar" %>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
