@@ -50,5 +50,4 @@ class BookingsController < ApplicationController
   def params_booking
     params.require(:booking).permit(:date, :description, :raclette_id, :status, :big_eater, :normal_eater, :small_eater)
   end
-
 end
