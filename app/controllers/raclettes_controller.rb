@@ -45,7 +45,7 @@ class RaclettesController < ApplicationController
   def destroy
     authorize @raclette
     @raclette.destroy
-    redirect_to raclettes_path, status: :see_other
+    redirect_to dashboard_path, status: :see_other
   end
 
   private

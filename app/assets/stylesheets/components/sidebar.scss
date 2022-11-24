@@ -26,6 +26,11 @@
   cursor: pointer;
 }
 
+.sidebar-elements ul li a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .display-none {
   display: none;
 }
