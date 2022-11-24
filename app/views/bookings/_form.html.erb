@@ -14,12 +14,12 @@
       <%= f.input :big_eater %>
       <%= f.input :normal_eater %>
       <%= f.input :small_eater %>
-      <%= f.button :submit, class: "btn btn-primary" %>
+      <%= f.button :submit, class: "main-button" %>
     <% end %>
       <div>
         <% if policy(@raclette).destroy? %>
           <%= link_to "Delete",
           raclette_path(@raclette),
-          class: "btn btn-danger",
+          class: "main-button",
           data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr de vouloir supprimer cet événement ?"} %>
         <% end %>
