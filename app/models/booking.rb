@@ -9,7 +9,7 @@ class Booking < ApplicationRecord
   validate :sum_eater
 
   def sum_eater
-    if (small_eater + normal_eater + big_eater) > raclette.number_of_guests
+    if (small_eater + normal_eater + big_eater + veggies) > raclette.number_of_guests
       errors.add(:base, 'sum of the eaters must be lower or equal to the number of possible guests for the event')
     end
   end
