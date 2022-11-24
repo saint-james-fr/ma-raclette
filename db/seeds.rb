@@ -97,9 +97,13 @@ puts "starts creating booking"
 booking_options = {
   date: DateTime.strptime("11/23/2022 20:00", "%m/%d/%Y %H:%M"),
   description: "c'est chez Anne ça va être super",
+  big_eater: 1,
+  normal_eater: 1,
+  small_eater: 1,
   raclette_id: Raclette.all[0].id,
-  user_id: User.all[0].id,
+  user_id: User.all[0].id
 }
+
 Booking.create!(booking_options)
 puts ">"
 puts "done!"
