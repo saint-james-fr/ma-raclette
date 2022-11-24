@@ -5,6 +5,11 @@
     <%= f.error_notification %>
 
     <div class="form-inputs">
+      <%= f.input :avatar,
+                  as: :file,
+                  required: false,
+                  autofocus: true,
+                  input_html: { autocomplete: "avatar" }%>
       <%= f.input :first_name,
                   required: true,
                   autofocus: true,
