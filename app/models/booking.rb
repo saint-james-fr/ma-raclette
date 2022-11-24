@@ -5,4 +5,5 @@ class Booking < ApplicationRecord
 
   validates :date, presence: true
   validates :description, presence: true
+  validates :status, acceptance: { accept: ['pending', 'accepted', 'declined'] }
 end
