@@ -3,7 +3,12 @@ class RaclettesController < ApplicationController
   before_action :set_raclette, only: %i[show edit update destroy]
 
   def index
-    @raclettes = policy_scope(Raclette)
+    # @raclettes = policy_scope(Raclette)
+    if params[:query].present?
+      @raclettes = policy_scope(Raclette).search_by_title_and_description(params[:query])
+    else
+      @raclettes = policy_scope(Raclette)
+    end
   end
 
   def show

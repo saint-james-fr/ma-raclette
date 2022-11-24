@@ -9,3 +9,16 @@
     color: white !important;
   }
 }
+
+.secondary-button{
+  background-color: white;
+  color: #de9f20;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border: 1px solid #de9f20;
+  border-radius: 5px;
+  padding: 7px;
+  text-decoration: none;
+  &:hover{
+    color: white !important;
+  }
+}
