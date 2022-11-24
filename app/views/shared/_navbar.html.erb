@@ -2,13 +2,13 @@
   <div class="container">
     <%= link_to "Ma raclette", root_path , class: "navbar-brand" %>
     <div class="d-flex">
-      <%= form_with url: raclettes_path, method: :get, class: "d-flex" do %>
+      <%= form_with url: raclettes_path, method: :get, class: "d-flex form-search" do %>
         <%= text_field_tag :query,
           params[:query],
           class: "form-control",
           placeholder: "Find a raclette"
         %>
-        <%= submit_tag "Search", class: "btn btn-primary" %>
+        <%= submit_tag "Search", class: "secondary-button" %>
       <% end %>
       <%= link_to "Add A Raclette", new_raclette_path, class: "main-button" %>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,9 +18,6 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Find a Raclette ", raclettes_path, class: "nav-link"  %>
-          </li>
           <li class="nav-item dropdown">
             <%= image_tag "https://picsum.photos/200", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
