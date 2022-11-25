@@ -1,4 +1,4 @@
-<div class="container d-flex flex-wrap">
+<div class="container">
   <div class="raclette-infos">
     <div class="raclette-infos-title">
     <h1><%= @raclette.title %></h1>
@@ -41,6 +41,9 @@
       <% end %> <!--  ********** END OF UNLESS STATEMENT  **********  -->
     </div>
   </div>
+</div>
+<div class="container d-flex">
+
   <%# <div class="raclette-images"> %>
     <div class="raclette-images-picture me-3">
       <% if @raclette.photo.attached? %>
