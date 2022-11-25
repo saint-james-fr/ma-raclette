@@ -3,11 +3,18 @@ class RaclettesController < ApplicationController
   before_action :set_raclette, only: %i[show edit update destroy]
 
   def index
-    # @raclettes = policy_scope(Raclette)
     if params[:query].present?
       @raclettes = policy_scope(Raclette).search_by_title_and_description(params[:query])
     else
       @raclettes = policy_scope(Raclette)
+    end
+    @markers = @raclettes.geocoded.map do |raclette|
+      {
+        lat: raclette.latitude,
+        lng: raclette.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: {raclette: raclette}),
+        image_url: helpers.asset_url("fromage")
+      }
     end
   end
 

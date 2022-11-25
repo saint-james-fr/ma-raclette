@@ -67,6 +67,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_24_164103) do
     t.integer "number_of_guests"
     t.string "title"
     t.text "description"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["user_id"], name: "index_raclettes_on_user_id"
   end
 
