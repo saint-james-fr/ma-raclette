@@ -1,0 +1,198 @@
+<div class="supercontainer d-flex">
+  <div class="sidebar w-25">
+    <div class="sidebar-elements" data-controller="dashboard-sidebar">
+      <ul>
+        <li data-action = "click->dashboard-sidebar#activeRaclette">
+          My Raclettes
+        </li>
+        <li data-action = "click->dashboard-sidebar#activeBookings">
+          My Bookings
+        </li>
+        <li>
+        <%= link_to "My Settings", edit_user_registration_path %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="container">
+    <div class="dashboard-options-container">
+      <div id="dashboard_raclettes" class="display">
+        <h2>My Raclettes</h2>
+        <% unless current_user.raclettes.empty? %>
+          <% current_user.raclettes.each do |raclette| %>
+            <%= link_to raclette_path(raclette) do %>
+              <div class="dashboard-raclette-card card-product">
+                <%= cl_image_tag raclette.photo.key %>
+                <%= raclette.title %>
+                <%= raclette.location %>
+                <%= raclette.description %>
+                <%= raclette.number_of_guests %>
+
+                <% if current_user.requests.all? {|request| request.status == "accepted"} %>
+                  All bookings confirmed
+                <% elsif current_user.requests.any? {|request| request.status == "pending"} %>
+                  Some bookings need confirmation
+                <% else %>
+                  No bookings pending
+                <% end %>
+
+               <% if policy(raclette).destroy? %>
+                  <%= link_to "Delete",
+                  raclette_path(raclette),
+                  class: "btn btn-danger",
+                  data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this raclette?"} %>
+                <% end %>
+
+              </div>
+
+            <% end %>
+
+          <% end %>
+
+            <% if current_user.requests.any? {|request| request.status == "pending"}  %>
+              <h2>My pending requests</h2>
+
+              <% current_user.requests.each do |request| %>
+
+                <% if request.status == "pending" %>
+                  <div class="dashboard-request-card card-product">
+                    <%= cl_image_tag request.user.avatar.key %><%= request.user.first_name %> <%= request.user.last_name %>
+                    <%= request.date %>
+                    <%= request.description %>
+                    <%= request.status %>
+                    <%= link_to "Accept", accepted_booking_path(request), data: {turbo_method: :patch} %>
+                    <%= link_to "Decline", declined_booking_path(request), data: {turbo_method: :patch} %>
+                  </div>
+                <% end %>
+
+              <% end %>
+
+            <% end %>
+
+        <% else %>
+          <p>You don't have any raclettes to offer yet 🧀  </p><%= link_to "Add A Raclette", new_raclette_path, class: "main-button" %>
+        <% end %>
+      </div>
+      <div id="dashboard_bookings" class="display-none">
+       <h2>My Bookings</h2>
+        <% unless current_user.bookings.empty? %>
+          <div class="pending_bookings">
+            <h2>Pending bookings</h2>
+            <% current_user.bookings.each do |booking| %>
+              <% if booking.date > Date.today %>
+                <% if booking.status == 'pending' %>
+                  <div class="card-product">
+                    <%= cl_image_tag booking.raclette.photo.key %>
+                    <h2><%= booking.raclette.title %></h2>
+                    <div class="content-localisation">
+                      <%= booking.raclette.location %>
+                      <%= cl_image_tag booking.raclette.user.avatar.key, class: "avatar" %>
+                    </div>
+                    <li>Status: <%= booking.status %></li>
+                    <li>Date: <%= booking.date %></li>
+                    <li>Owner : <%= booking.raclette.user.first_name %></li>
+                    <% if policy(booking).destroy? %>
+                    <%= link_to "Cancel",
+                    booking_path(booking),
+                    class: "btn btn-danger",
+                    data: {turbo_method: :delete, turbo_confirm: "Are your sure you want to delete this booking?"} %>
+                    <% end %>
+
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="accepted_bookings">
+            <h2>Accepted bookings</h2>
+            <% current_user.bookings.each do |booking| %>
+              <% if booking.date > Date.today %>
+                <% if booking.status == 'accepted' %>
+                  <ul>
+                    <li>Status: <%= booking.status %></li>
+                    <li>Description: <%= booking.description %></li>
+                    <li>Date: <%= booking.date %></li>
+                    <li>Owner : <%= booking.raclette.user.first_name %></li>
+                    <li>Raclette : <%= booking.raclette.title %></li>
+                    <% if policy(booking).destroy? %>
+                    <%= link_to "Cancel",
+                    booking_path(booking),
+                    class: "btn btn-danger",
+                    data: {turbo_method: :delete, turbo_confirm: "Are your sure you want to delete this booking?"} %>
+                    <% end %>
+                    <br>
+                  </ul>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="declined_bookings">
+            <h2>Declined bookings</h2>
+            <% current_user.bookings.each do |booking| %>
+              <% if booking.date > Date.today %>
+                <% if booking.status == 'declined' %>
+                  <ul>
+                    <li>Status: <%= booking.status %></li>
+                    <li>Description: <%= booking.description %></li>
+                    <li>Date: <%= booking.date %></li>
+                    <li>Owner : <%= booking.raclette.user.first_name %></li>
+                    <li>Raclette : <%= booking.raclette.title %></li>
+                    <br>
+                  </ul>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+          <% if current_user.bookings.any? {|booking| booking.date < Date.today }  %>
+            <div class="reviews_bookings">
+              <h2>Your past bookings</h2>
+              <% current_user.bookings.each do |booking| %>
+
+                  <% if booking.status == 'accepted' %>
+                    <ul>
+                      <li>Status: <%= booking.status %></li>
+                      <li>Description: <%= booking.description %></li>
+                      <li>Date: <%= booking.date %></li>
+                      <li>Owner : <%= booking.raclette.user.first_name %></li>
+                      <li>Raclette : <%= booking.raclette.title %></li>
+                      <br>
+                    </ul>
+                    <button class="modal-button" data-bs-toggle="modal" data-bs-target="#reviewsModal">Review</button>
+                      <!--  **********  MODAL REVIEW  **********  -->
+                      <div class="modal fade" id="reviewsModal" tabindex="-1" aria-labelledby="reviewsModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <div class="modal-adader">
+                              <h1 class="modal-title fs-5" id="reviewsModalLabel">'s reviews</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            <%= simple_form_for [booking, @review] do |f| %>
+                                <%= f.input :description %>
+                                <%= f.input :rating %>
+                                <%= f.submit %>
+                            <% end %>
+                              <%#= render :new, booking: @booking, review: @review  %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!--  ********** END OF MODAL REVIEW  **********  -->
+                  <% end %>
+
+              <% end %>
+            </div>
+          <% end %>
+        <% else %>
+          <p>No bookings to show yet, you should have a look at the raclettes around you 🧀  </p><%= link_to "let's find out", raclettes_path, class:"main-button" %>
+        <% end %>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<p>
+
+</p>

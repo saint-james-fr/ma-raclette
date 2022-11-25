@@ -1,0 +1,40 @@
+.sidebar {
+  background-color: #de9f20;
+  max-width: 400px;
+  min-width: 200px;
+}
+
+.sidebar-elements {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.sidebar-elements ul {
+  list-style-type: none;
+  color: white;
+  font-size: 22px;
+}
+
+.sidebar-elements ul li {
+  margin-bottom: 6px;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.sidebar-elements ul li:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.sidebar-elements ul li a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.display-none {
+  display: none;
+}
+
+.display {
+  display: block;
+}

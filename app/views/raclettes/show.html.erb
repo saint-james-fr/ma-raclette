@@ -4,7 +4,8 @@
     <h1><%= @raclette.title %></h1>
     </div>
     <div class="raclette-infos-subtitle">
-      <p><i class="fa-solid fa-location-pin"></i> <%= @raclette.location %></p>
+      <p> hosted by <%= @raclette.user.first_name %> <%= @raclette.user.last_name %>
+      <i class="fa-solid fa-location-pin"></i> <%= @raclette.location %></p>
       <!--  ********** UNLESS TEST IF EMPTY REVIEWS  **********  -->
       <% unless @raclette.reviews.empty? %>
         <p><i class="fa-solid fa-star"></i>
@@ -76,16 +77,8 @@
       </ul>
     </div>
     <div class="raclette-content-booking">
-      <h3>Book it !</h3>
+      <h3 class="text-center">Book this raclette!</h3>
        <%= render "bookings/form", booking: @booking, raclette: @raclette  %>
     </div>
   </div>
-
-  <%# <% if current_user == review.user %>
-    <%# <%= link_to 'Edit my review', edit_booking_review_path(booking, review) %>
-  <%# <% end %>
-
-   <%# <% if current_user == @raclette.user %>
-    <%# <%= link_to "Edit", edit_raclette_path, class: "btn btn-info" %>
-  <%# <% end %>
 </div>
