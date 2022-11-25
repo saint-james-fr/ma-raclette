@@ -1,15 +1,13 @@
 .card-banner {
-  height: 290px;
-  width: 350px;
-  padding: 45px;
+  padding: 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: column;
-  background-color: white;
-  color: black;
-  font-size: 24px;
+  color: white;
+  font-size: 35px;
+  font-weight: lighter;
   border-radius: 5px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  margin-bottom: 300px;
 }
 
 .card-banner-title {
