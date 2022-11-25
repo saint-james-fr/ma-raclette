@@ -10,6 +10,7 @@
 }
 
 ul {
+  list-style: none;
   padding: 0;
   margin: 0
 }
@@ -33,20 +34,46 @@ ul {
  justify-content: space-between;
 }
 
-.raclette-images > div {
-  max-width: 48%;
-  border-radius: 5px;
+// .raclette-images > div {
+//   max-width: 60%;
+//   border-radius: 5px;
 
-  img {
-    object-fit: cover;
-    width: 100%;
-    border-radius: 10px;
-  }
+//   img {
+//     object-fit: cover;
+//     width: 100%;
+//     border-radius: 10px;
+//   }
 
-  :first-child img {
-    margin-right: 2vw;
+//   :first-child img {
+//     margin-right: 2vw;
+//   }
+// }
+.raclette-images-picture{
+
+    max-width: 60%;
+    border-radius: 5px;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    :first-child img {
+      margin-right: 2vw;
+    }
+}
+
+.description {
+  padding: 20px;
+  border-bottom: 1px solid black;
+
+  h5 {
+    font-weight: bold;
+
   }
 }
+
 
 .raclette-content {
   display: flex;
@@ -55,12 +82,23 @@ ul {
 
 .raclette-content-description {
   flex-grow: 1;
+  padding: 10px;
+  border-radius: 5px ;
+  background-color: white;
+  box-shadow: 0 0 50px rgba(94, 94, 94, 0.2);
 }
 
 .raclette-content-booking {
+  position: sticky !important;
+  top: 0;
+  float: right;
+  height: 90vh;
+  align-self: flex-start;
+  // overflow-y: auto;
+  height: auto;
   width: 30vw;
   margin-bottom: 40px;
-  background-color: white;
+  background-color: whitÒe;
   box-shadow: 0px 0px 20px grey;
   // border: 2px solid rgba(91, 80, 217, 0.8);
   border-radius: 10px;
