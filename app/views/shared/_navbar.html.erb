@@ -1,6 +1,11 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container">
-  <img  class="logo" src="https://res.cloudinary.com/dxdnj4zbo/image/upload/v1669387302/Blanc_et_Cercle_Rouge_Art_Logo_2_eracyy.png">
+  <%= link_to root_path do %>
+
+    <img  class="logo" src="https://res.cloudinary.com/dxdnj4zbo/image/upload/v1669387302/Blanc_et_Cercle_Rouge_Art_Logo_2_eracyy.png">
+
+  <% end %>
+
     <%# <%= link_to <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/9/9a/Logo_D%C3%A9partement_Savoie.svg/695px-Logo_D%C3%A9partement_Savoie.svg.png?20180409184647">, root_path , class: "navbar-brand" %>
     <div class="d-flex" >
     <% unless params[:action] == "index" && params[:controller] == "raclettes" || params[:action] == "home" %>
