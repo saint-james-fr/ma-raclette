@@ -1,15 +1,36 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.marciatack.fr/wp-content/uploads/2021/01/raclette-fromage-1-sur-1.jpg);">
-  <div class="container">
+<div class="banner-home" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://www.marciatack.fr/wp-content/uploads/2021/01/raclette-fromage-1-sur-1.jpg')">
+  <%# <%= form_with url: raclettes_path, method: :get, class: "d-flex" do %>
+        <%# <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Find a raclette"
+        %>
+        <%# <%= submit_tag "Search", class: "secondary-button" %>
+      <%# <% end %>
+  <%# <div class="container">
     <div class="card-banner">
-      <div class="card-banner-title">
+
         <h1>Ma Raclette</h1>
         <p>Say cheese!</p>
-      </div>
+
       <div class="card-banner-logo">
         <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/9/9a/Logo_D%C3%A9partement_Savoie.svg/695px-Logo_D%C3%A9partement_Savoie.svg.png?20180409184647" alt="Savoie's Logo">
       </div>
       <div class="card-banner-cta">
         <%= link_to "Find a raclette now!", raclettes_path, class: "main-button" %>
+        <div class="card-banner">
+        <p>On va en faire tout un fromage</p>
+        </div>
+        <div class="container search_banner">
+        <%= form_with url: raclettes_path, method: :get, class: "d-flex form-search" do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Type an address"
+        %>
+        <%= submit_tag "Search", class: "secondary-button" %>
+      <% end %>
+      </div>
       </div>
     </div>
   </div>

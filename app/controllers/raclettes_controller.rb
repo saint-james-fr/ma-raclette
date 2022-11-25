@@ -4,7 +4,8 @@ class RaclettesController < ApplicationController
 
   def index
     if params[:query].present?
-      @raclettes = policy_scope(Raclette).search_by_title_and_description(params[:query])
+      @raclettes = policy_scope(Raclette).near(params[:query], 10)
+
     else
       @raclettes = policy_scope(Raclette)
     end
