@@ -26,6 +26,10 @@ class BookingPolicy < ApplicationPolicy
     record.raclette.user == user
   end
 
+  def canceled?
+    record.user == user
+  end
+
   def declined?
     record.raclette.user == user
   end

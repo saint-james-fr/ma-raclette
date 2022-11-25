@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     member do # crée une route custom inside bookings
       patch :accepted
       patch :declined
+      patch :canceled
     end
   end
   resources :bookings, only: :destroy

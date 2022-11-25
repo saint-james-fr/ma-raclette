@@ -9,15 +9,16 @@ class Booking < ApplicationRecord
   validates :normal_eater, numericality: { greater_than_or_equal_to: 0 }
   validates :big_eater, numericality: { greater_than_or_equal_to: 0 }
   validates :veggies, numericality: { greater_than_or_equal_to: 0 }
-  validates :status, acceptance: { accept: ['pending', 'accepted', 'declined'] }
+  validates :status, acceptance: { accept: ['pending', 'accepted', 'declined', 'canceled'] }
   scope :pending, -> { where(status: "pending") }
   scope :accepted, -> { where(status: "accepted") }
-  validate :sum_eater
+  scope :declined, -> { where(status: "declined") }
+  # validate :sum_eater
 
-  def sum_eater
-    eaters = (small_eater + normal_eater + big_eater + veggies)
-    if eaters > raclette.number_of_guests || eaters == 0
-      errors.add(:base, 'sum of the eaters must be lower or equal to the number of possible guests for the event')
-    end
-  end
+  # def sum_eater
+  #   eaters = (small_eater + normal_eater + big_eater + veggies)
+  #   if eaters > raclette.number_of_guests || eaters == 0
+  #     errors.add(:base, 'sum of the eaters must be lower or equal to the number of possible guests for the event')
+  #   end
+  # end
 end

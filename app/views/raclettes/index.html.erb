@@ -8,18 +8,22 @@
     <div class="cards-grid-index" >
       <% @raclettes.each do |raclette| %>
         <%= link_to raclette_path(raclette) do%>
-          <div class= card-grid-index>
+          <div class="card-grid-index">
             <%= image_tag raclette.photo %>
+            <div class="card-product-infos">
             <h2><%= raclette.title %></h2>
             <p><i class="fa-solid fa-location-pin"></i> <%= raclette.location %></p>
             <p><i class="fa-solid fa-person"></i> <i class="fa-solid fa-person-dress"></i> <%= raclette.number_of_guests %> persons allowed</p>
+            </div>
           </div>
         <% end %>
       <% end %>
     </div>
-    <div class="half-container">
-      <div class="map">
-      </div>
-    </div>
   </div>
+   <div class="half-container map"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+
 </div>
