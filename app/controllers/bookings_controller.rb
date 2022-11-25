@@ -13,7 +13,7 @@ class BookingsController < ApplicationController
     @booking.raclette = @raclette
     authorize @booking
     if @booking.save
-      redirect_to raclette_path(@raclette)
+      redirect_to dashboard_path
       flash.alert = "Booking added."
     else
       flash.alert = "Please verify all inputs"

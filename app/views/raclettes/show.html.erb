@@ -41,26 +41,59 @@
       <% end %> <!--  ********** END OF UNLESS STATEMENT  **********  -->
     </div>
   </div>
-  <div class="raclette-images">
-    <div class="raclette-images-picture">
+</div>
+<div class="container d-flex">
+
+  <%# <div class="raclette-images"> %>
+    <div class="raclette-images-picture me-3">
       <% if @raclette.photo.attached? %>
       <%= cl_image_tag @raclette.photo.key %>
     <% end %>
-    </div>
-    <div class="raclette-images-map">
-      <% if @raclette.photo.attached? %>
-      <%= cl_image_tag @raclette.photo.key %>
-    <% end %>
-    </div>
-  </div>
-  <div class="raclette-content">
+    <div class="raclette-content">
     <div class="raclette-content-description">
-      <p><span class="underline">What's to expect?</span><br><%= @raclette.description %></p>
-      <p><span class="underline">How many guests are expected?</span><br><%= @raclette.number_of_guests %></p>
+      <div class="description">
+        <h5>What's to expect?</h5>
+        <p><%= @raclette.description %></p>
+      </div>
+      <div class="description">
+      <h5>How many guests are expected?</h5>
+      <p><%= @raclette.number_of_guests %></p>
+      </div>
+      <div class="description">
+        <h5>Types of cheese</h5>
+        <ul>
+          <li>Morbier</li>
+          <li>Raclette au piment d'espelette</li>
+          <li>Raclette au lait cru</li>
+          <li>Raclette au 3 poivres</li>
+        </ul>
+      </div>
+      <div class="description">
+        <h5>meat & alternatives</h5>
+          <ul>
+            <li>jambon blanc</li>
+            <li>Jambon cru</li>
+            <li>Rosette</li>
+            <li>grison</li>
+            <li>carottes</li>
+            <li>salade</li>
+          </ul>
+      </div>
+      <div>
+      </div>
+
     </div>
-    <div class="raclette-content-booking">
+    <%# <div class="raclette-content-booking">
       <h3 class="text-center">Book this raclette!</h3>
        <%= render "bookings/form", booking: @booking, raclette: @raclette  %>
-    </div>
+    <%# </div> %>
   </div>
+    </div>
+    <%# <div class="raclette-images-map"></div> %>
+  <%# </div> %>
+  <div class="raclette-content-booking">
+    <h3 class="text-center">Book this raclette!</h3>
+    <%= render "bookings/form", booking: @booking, raclette: @raclette  %>
+  </div>
+
 </div>
