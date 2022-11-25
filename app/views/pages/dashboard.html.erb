@@ -78,12 +78,31 @@
 
                 <% if request.status == "pending" %>
                   <div class="dashboard-request-card card-product">
-                    <%= cl_image_tag request.user.avatar.key %><%= request.user.first_name %> <%= request.user.last_name %>
-                    <%= request.date %>
-                    <%= request.description %>
-                    <%= request.status %>
-                    <%= link_to "Accept", accepted_booking_path(request), data: {turbo_method: :patch} %>
-                    <%= link_to "Decline", declined_booking_path(request), data: {turbo_method: :patch} %>
+                    <%= cl_image_tag request.user.avatar.key %>
+                    <div class="card-product-booking">
+                      <div class="card-product-head">
+                        <div class="card-product-title">
+                          <h2><%= request.user.first_name %> <%= request.user.last_name %></h2>
+                          <p><i class="fa-solid fa-calendar"></i><%= request.date.strftime("%B %d, %Y") %></p>
+                        </div>
+                        <div class="card-product-status status-pending">
+                            <%= request.status %>
+                          <div class="card-button">
+                            <%= link_to "Accept", accepted_booking_path(request), data: {turbo_method: :patch}, class: "btn btn-success" %>
+                            <%= link_to "Decline", declined_booking_path(request), data: {turbo_method: :patch}, class: "btn btn-danger" %>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-footer">
+                        <div class="card-product-infos">
+                          <div class="card-product-details">
+                            <p><i class="fa-solid fa-utensils"></i></i><%= request.raclette.number_of_guests%></p>
+                            <p><%= request.description %></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                   </div>
                 <% end %>
 
@@ -103,6 +122,7 @@
               <h2>Pending bookings</h2>
             <% end %>
             <% current_user.bookings.pending.each do |booking| %>
+              <%= link_to raclette_path(booking.raclette) do %>
                   <div class="card-product">
                     <%= cl_image_tag booking.raclette.photo.key %>
                     <div class="card-product-booking">
@@ -139,6 +159,7 @@
                       </div>
                     </div>
                   </div>
+              <% end  %>
             <% end %>
           </div>
           <div class="accepted_bookings">
@@ -146,53 +167,57 @@
               <h2>Accepted bookings</h2>
             <% end %>
             <% current_user.bookings.accepted.each do |booking| %>
-              <% if booking.date > Date.today %>
-                <% if booking.status == 'accepted' %>
-                  <div class="card-product">
-                    <%= cl_image_tag booking.raclette.photo.key %>
-                    <div class="card-product-booking">
-                      <div class="card-product-head">
-                        <div class="card-product-title">
-                          <h2><%= booking.raclette.title %></h2>
-                          <p><i class="fa-solid fa-location-pin"></i><%= booking.raclette.location %></p>
-                        </div>
-                        <div class="card-product-status">
-                          <%= cl_image_tag booking.raclette.user.avatar.key, class: "avatar" %>
-                          <div class="status-accepted">
-                            Accepted
+              <%= link_to raclette_path(booking.raclette) do %>
+                <% if booking.date > Date.today %>
+                  <% if booking.status == 'accepted' %>
+                    <div class="card-product">
+                      <%= cl_image_tag booking.raclette.photo.key %>
+                      <div class="card-product-booking">
+                        <div class="card-product-head">
+                          <div class="card-product-title">
+                            <h2><%= booking.raclette.title %></h2>
+                            <p><i class="fa-solid fa-location-pin"></i><%= booking.raclette.location %></p>
                           </div>
-                          <div class="card-button">
-                            <%= link_to "Cancel",
-                            canceled_booking_path(booking),
-                            class: "btn btn-danger",
-                            data: {turbo_method: :patch, turbo_confirm: "Are your sure you want to cancel this booking?"} %>
+                          <div class="card-product-status">
+                            <%= cl_image_tag booking.raclette.user.avatar.key, class: "avatar" %>
+                            <div class="status-accepted">
+                              Accepted
+                            </div>
+                            <div class="card-button">
+                              <%= link_to "Cancel",
+                              canceled_booking_path(booking),
+                              class: "btn btn-danger",
+                              data: {turbo_method: :patch, turbo_confirm: "Are your sure you want to cancel this booking?"} %>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="card-footer">
-                        <div class="card-product-infos">
-                          <div class="card-product-details">
-                            <p><%= booking.date.strftime("Booked on %B %d, %Y") %></p>
-                            <div class="big-eater">
-                              <p><i class="fa-solid fa-cheese"></i><i class="fa-solid fa-cheese"></i><i class="fa-solid fa-cheese"></i><%= booking.big_eater %></p>
-                              <p><i class="fa-solid fa-cheese"></i><i class="fa-solid fa-cheese"></i></i><%= booking.normal_eater %></p>
-                              <p><i class="fa-solid fa-cheese"></i></i><%= booking.small_eater %></p>
-                              <p><i class="fa-solid fa-carrot"></i><%= booking.veggies %></p>
+                        <div class="card-footer">
+                          <div class="card-product-infos">
+                            <div class="card-product-details">
+                              <p><%= booking.date.strftime("Booked on %B %d, %Y") %></p>
+                              <div class="big-eater">
+                                <p><i class="fa-solid fa-cheese"></i><i class="fa-solid fa-cheese"></i><i class="fa-solid fa-cheese"></i><%= booking.big_eater %></p>
+                                <p><i class="fa-solid fa-cheese"></i><i class="fa-solid fa-cheese"></i></i><%= booking.normal_eater %></p>
+                                <p><i class="fa-solid fa-cheese"></i></i><%= booking.small_eater %></p>
+                                <p><i class="fa-solid fa-carrot"></i><%= booking.veggies %></p>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  <% end %>
                 <% end %>
               <% end %>
-            <% end %>
+              <% end %>
+
           </div>
           <div class="declined_bookings">
             <% unless current_user.bookings.declined.empty? %>
               <h2>Declined bookings</h2>
             <% end %>
             <% current_user.bookings.declined.each do |booking| %>
+                <%= link_to raclette_path(booking.raclette) do %>
                   <div class="card-product">
                     <%= cl_image_tag booking.raclette.photo.key %>
                     <div class="card-product-booking">
@@ -223,72 +248,80 @@
                       </div>
                     </div>
                   </div>
+                <% end %>
             <% end %>
           </div>
           <% if current_user.bookings.any? {|booking| booking.date < Date.today }  %>
             <div class="reviews_bookings">
-              <% unless current_user.bookings.accepted.empty? || current_user.bookings.any? {|booking| booking.date < Date.today } %>
+              <% unless current_user.bookings.accepted.empty? %>
                 <h2>Past bookings</h2>
               <% end %>
                 <% current_user.bookings.each do |booking| %>
-                  <% if booking.date < Date.today %>
+                    <%= link_to raclette_path(booking.raclette) do %>
+                      <% if booking.date < Date.today %>
+                        <% if booking.status == 'accepted' %>
+                          <div class="card-product">
+                          <%= cl_image_tag booking.raclette.photo.key %>
+                          <div class="card-product-booking">
+                            <div class="card-product-head">
+                              <div class="card-product-title">
+                                <h2><%= booking.raclette.title %></h2>
+                                <p><i class="fa-solid fa-location-pin"></i><%= booking.raclette.location %></p>
+                              </div>
+                              <div class="card-product-status">
+                                <%= cl_image_tag booking.raclette.user.avatar.key, class: "avatar" %>
+                                <div class="status-accepted">
+                                  Accepted
+                                </div>
+                                <div class="card-button">
+                                  <button class="modal-button" data-bs-toggle="modal" data-bs-target="#reviewsModal">Review</button>
+                              </div>
+                              </div>
+                            </div>
+                            <div class="card-footer">
+                              <div class="card-product-infos">
+                                <div class="card-product-details">
+                                  <p><%= booking.date.strftime("Booked on %B %d, %Y") %></p>
+                                  <div class="big-eater">
+                                    <p><i class="fa-solid fa-cheese"></i><i class="fa-solid fa-cheese"></i><i class="fa-solid fa-cheese"></i><%= booking.big_eater %></p>
+                                    <p><i class="fa-solid fa-cheese"></i><i class="fa-solid fa-cheese"></i></i><%= booking.normal_eater %></p>
+                                    <p><i class="fa-solid fa-cheese"></i></i><%= booking.small_eater %></p>
+                                    <p><i class="fa-solid fa-carrot"></i><%= booking.veggies %></p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
 
-                    <% if booking.status == 'accepted' %>
-                      <div class="card-product">
-                      <%= cl_image_tag booking.raclette.photo.key %>
-                      <div class="card-product-booking">
-                        <div class="card-product-head">
-                          <div class="card-product-title">
-                            <h2><%= booking.raclette.title %></h2>
-                            <p><i class="fa-solid fa-location-pin"></i><%= booking.raclette.location %></p>
-                          </div>
-                          <div class="card-product-status">
-                            <%= cl_image_tag booking.raclette.user.avatar.key, class: "avatar" %>
-                            <div class="status-accepted">
-                              Accepted
-                            </div>
-                            <div class="card-button">
-                              <button class="modal-button" data-bs-toggle="modal" data-bs-target="#reviewsModal">Review</button>
-                          </div>
-                          </div>
-                        </div>
-                        <div class="card-footer">
-                          <div class="card-product-infos">
-                            <div class="card-product-details">
-                              <p><%= booking.date.strftime("Booked on %B %d, %Y") %></p>
-                              <div class="big-eater">
-                                <p><i class="fa-solid fa-cheese"></i><i class="fa-solid fa-cheese"></i><i class="fa-solid fa-cheese"></i><%= booking.big_eater %></p>
-                                <p><i class="fa-solid fa-cheese"></i><i class="fa-solid fa-cheese"></i></i><%= booking.normal_eater %></p>
-                                <p><i class="fa-solid fa-cheese"></i></i><%= booking.small_eater %></p>
-                                <p><i class="fa-solid fa-carrot"></i><%= booking.veggies %></p>
+
+
+
+
+                            <!--  **********  MODAL REVIEW  **********  -->
+                            <div class="modal fade" id="reviewsModal" tabindex="-1" aria-labelledby="reviewsModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                  <div class="modal-adader">
+                                    <h1 class="modal-title fs-5" id="reviewsModalLabel">Booking review</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                  <%= simple_form_for [booking, @review] do |f| %>
+                                      <%= f.input :description %>
+                                      <%= f.input :rating %>
+                                      <%= f.submit %>
+                                  <% end %>
+                                    <%#= render :new, booking: @booking, review: @review  %>
+                                  </div>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                        <!--  **********  MODAL REVIEW  **********  -->
-                        <div class="modal fade" id="reviewsModal" tabindex="-1" aria-labelledby="reviewsModalLabel" aria-hidden="true">
-                          <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                              <div class="modal-adader">
-                                <h1 class="modal-title fs-5" id="reviewsModalLabel">Booking review</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                              </div>
-                              <div class="modal-body">
-                              <%= simple_form_for [booking, @review] do |f| %>
-                                  <%= f.input :description %>
-                                  <%= f.input :rating %>
-                                  <%= f.submit %>
-                              <% end %>
-                                <%#= render :new, booking: @booking, review: @review  %>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <!--  ********** END OF MODAL REVIEW  **********  -->
+                            <!--  ********** END OF MODAL REVIEW  **********  -->
+                        <% end %>
+                    <% end  %>
                     <% end %>
-                <% end  %>
+
               <% end %>
             </div>
           <% end %>
