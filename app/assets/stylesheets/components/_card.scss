@@ -195,8 +195,9 @@
 
 .card-product-status {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+  justify-content: space-evenly;
+  width: 239px;
 }
 
 .card-product-status .avatar {
@@ -205,11 +206,10 @@
 }
 
 .status-pending {
-  background-color: #8080807a;
-  color: white;
+  color: #8080807a;
   padding: 6px 15px;
-  border-radius: 4px;
   font-size: 12px;
+  font-style: italic;
 }
 
 .card-product-details p {
@@ -219,4 +219,42 @@
 .big-eater {
   margin-top: 4px;
   font-size: 12px;
+}
+
+.card-product-title i {
+  margin-right: 7px;
+}
+
+.card-button {
+  color: white;
+}
+
+.card-button a {
+  color: white;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+.big-eater {
+  display: flex;
+
+  p {
+    margin-right: 25px;
+  }
+
+  i {
+    margin-right: 6px;
+  }
+}
+
+.status-declined {
+  font-size: 12px;
+  font-style: italic;
+  color: #c03838;
+}
+
+.status-accepted {
+  font-size: 12px;
+  font-style: italic;
+  color: #329152;
 }
