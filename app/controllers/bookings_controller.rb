@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_raclette, only: %i[new create edit update destroy show]
-  before_action :set_booking, only: %i[edit update show accepted declined]
+  before_action :set_booking, only: %i[edit update show accepted declined canceled]
 
   def new
     @booking = Booking.new
@@ -39,10 +39,11 @@ class BookingsController < ApplicationController
     authorize @booking
   end
 
-  def destroy
+  def canceled
     authorize @booking
-    @booking.destroy
-    redirect_to dashboard_path, status: :see_other
+    if @booking.update(status: "canceled")
+      redirect_to dashboard_path, status: :see_other
+    end
   end
 
   def accepted
