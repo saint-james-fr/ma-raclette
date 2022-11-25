@@ -4,6 +4,12 @@
 
 import { application } from "./application"
 
+import DashboardSidebarController from "./dashboard_sidebar_controller"
+application.register("dashboard-sidebar", DashboardSidebarController)
+
+import FlatpickrController from "./flatpickr_controller"
+application.register("flatpickr", FlatpickrController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 

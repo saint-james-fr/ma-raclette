@@ -9,7 +9,7 @@
         <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/9/9a/Logo_D%C3%A9partement_Savoie.svg/695px-Logo_D%C3%A9partement_Savoie.svg.png?20180409184647" alt="Savoie's Logo">
       </div>
       <div class="card-banner-cta">
-        <%= link_to "Find a raclette now!", raclettes_path, class: "btn btn-ghost main-button" %>
+        <%= link_to "Find a raclette now!", raclettes_path, class: "main-button" %>
       </div>
     </div>
   </div>
@@ -20,6 +20,7 @@
     <% Raclette.last(5).reverse.each do |raclette| %>
       <%= link_to raclette_path(raclette) do %>
         <div class="card-grid-home" >
+          <%=cl_image_tag raclette.photo.key %>
           <h2><%= raclette.title %></h2>
           <p><i class="fa-solid fa-location-pin"></i> <%= raclette.location %></p>
           <p><i class="fa-solid fa-person"></i> <i class="fa-solid fa-person-dress"></i> <%= raclette.number_of_guests %> persons allowed</p>

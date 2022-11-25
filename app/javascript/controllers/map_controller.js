@@ -54,7 +54,7 @@ export default class extends Controller {
 
     #openInfoWindow(){
       // Select all cards
-      const cards = document.querySelectorAll('.card-product');
+      const cards = document.querySelectorAll('.card-grid-index');
       cards.forEach((card, index) => {
         const popup = new mapboxgl.Popup().setHTML(this.markersValue[index].infoWindow)
         const customMarker = document.createElement("div")

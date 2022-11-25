@@ -3,8 +3,8 @@
     <%= f.input :description %>
     <%= f.input :number_of_guests %>
     <%= f.input :location,
-    input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},
+    input_html: {data: {location_autocomplete_target: "location"}, class: "d-none"},
     wrapper_html: {data: {controller: "location-autocomplete", location_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
-    <%= f.input :photo  %>
+    <%= f.input :photo, as: :file   %>
     <%= f.submit %>
 <% end %>

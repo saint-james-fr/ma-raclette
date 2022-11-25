@@ -17,4 +17,18 @@ class BookingPolicy < ApplicationPolicy
   def show?
     update? || record.raclette.user == user
   end
+
+  def destroy?
+    record.user == user
+  end
+
+  def accepted?
+    record.raclette.user == user
+  end
+
+  def declined?
+    record.raclette.user == user
+  end
+
+
 end

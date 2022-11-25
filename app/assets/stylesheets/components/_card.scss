@@ -37,10 +37,50 @@
   }
 }
 
+.cards-grid-index {
+  display: grid;
+  grid-template-columns: 1fr 1fr ;
+  grid-gap: 16px;
+}
+.card-grid-index img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 20px;
+}
+.card-grid-index {
+  background-size: cover;
+  background-position: center;
+  height: auto;
+  display: block;
+  padding: 20px;
+}
+
+.card-grid-index h2 {
+  font-size: 1.2rem;
+  padding-top: 8px;
+  padding-bottom: 0px;
+  font-weight: bold;
+}
+
+.card-grid-index p {
+  padding: 0;
+  margin: 0;
+  color: #545767;
+}
+
+.card-grid-index img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+
 
 .cards-grid-home {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 16px;
 }
 
@@ -75,39 +115,41 @@
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
   .cards-grid-home {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
-}
-
-.card-grid-home {
-  background-size: cover;
-  background-position: center;
-  height: 180px;
-  display: block;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  background-color: cornsilk;
-  transition: box-shadow 0.1s ease-in-out;
-}
-
-.card-grid-home:hover {
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 24px, rgba(17, 17, 26, 0.1) 0px 24px 24px;
-}
-
-.card-grid-home h2 {
-  font-size: 1.4rem;
-  padding-bottom: 20px;
-  text-decoration: underline;
-}
-
-.card-grid-home p {
-  padding: 0;
 }
 
 .cards-grid-home a {
   text-decoration: none;
   color: inherit;
+}
+
+.card-grid-home {
+  background-size: cover;
+  background-position: center;
+  height: auto;
+  display: block;
+  padding: 20px;
+}
+
+.card-grid-home h2 {
+  font-size: 1.2rem;
+  padding-top: 8px;
+  padding-bottom: 0px;
+  font-weight: bold;
+}
+
+.card-grid-home p {
+  padding: 0;
+  margin: 0;
+  color: #545767;
+}
+
+.card-grid-home img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 20px;
 }
 
 .card-product {
@@ -140,6 +182,41 @@
   margin-top: 8px;
 }
 
-.card-product .card-product-infos {
-  padding: 16px;
+.card-product-booking {
+  padding-left: 20px;
+  padding-right: 20px;
+  flex-grow: 1;
+}
+
+.card-product-head {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-product-status {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.card-product-status .avatar {
+  width: 30px;
+  height: 30px;
+}
+
+.status-pending {
+  background-color: #8080807a;
+  color: white;
+  padding: 6px 15px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.card-product-details p {
+  font-style: italic;
+}
+
+.big-eater {
+  margin-top: 4px;
+  font-size: 12px;
 }

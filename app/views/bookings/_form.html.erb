@@ -1,0 +1,20 @@
+<%= simple_form_for [@raclette, @booking],
+                          html: {
+                            data: {
+                              controller: 'flatpickr'
+                          }
+                    } do |f| %>
+      <%= f.input :date,
+              as: :string,
+              input_html: {
+                data: {
+                  flatpickr_target: 'startDateInput',
+              },
+                :placeholder => "Pick a date" } %>
+      <%= f.input :description, :input_html => { :placeholder => "Tell #{@raclette.user.first_name} what's your plan" } %>
+      <%= f.input :big_eater, :input_html => { :min => 0 }%>
+      <%= f.input :normal_eater, :input_html => { :min => 0 } %>
+      <%= f.input :small_eater, :input_html => { :min => 0 } %>
+      <%= f.input :veggies, :input_html => { :min => 0 } %>
+      <%= f.button :submit, class: "main-button w-100" %>
+    <% end %>
