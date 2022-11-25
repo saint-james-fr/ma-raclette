@@ -2,10 +2,13 @@
 <html>
   <head>
     <title>MaRaclette</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png"/>
     <link rel="shortcut icon" type="image/png" href="/images/logo.png"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+      <%= favicon_link_tag "favicon.png", rel: "icon", type: "image/png" %>
+
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
