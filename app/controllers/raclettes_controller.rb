@@ -14,7 +14,7 @@ class RaclettesController < ApplicationController
         lat: raclette.latitude,
         lng: raclette.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: {raclette: raclette}),
-        image_url: helpers.asset_url("fromage.png")
+        image_url: helpers.asset_url("fromage.svg")
       }
     end
   end
