@@ -54,7 +54,7 @@ users_options = [user1, user2, user3, user4, user5]
 puts ">"
 puts "starts creating users"
 users_options.each do |user_option|
-  file = URI.open("https://picsum.photos/200")
+  file = URI.open("https://picsum.photos/200?person")
   user = User.new(user_option)
   user.avatar.attach(io: file, filename: "nes#{rand(1..1000000)}.png", content_type: "image/png")
   user.save
@@ -73,18 +73,40 @@ raclette_1 = {
 
 raclette_2 = {
   location: "2 boulevard Biron, 93400 Saint-Ouen",
-  user_id: User.all[3].id,
+  user_id: User.all[1].id,
   title: "Raclette de banlieue",
   description: "Une raclette simple pour les gens simples",
   number_of_guests: 3
 }
 
-raclette_options = [raclette_1, raclette_2]
+raclette_3 = {
+  location: "Puteaux",
+  user_id: User.all[2].id,
+  title: "Raclette de gros déglingooooos",
+  description: "Au moins 15 kg de fromage prévu",
+  number_of_guests: 2
+}
+raclette_4 = {
+  location: "2 rue de la sablière, 75014 Paris",
+  user_id: User.all[3].id,
+  title: "Raclette à la bonne franquette",
+  description: "Une raclette simple pour les gens simples",
+  number_of_guests: 4
+}
+raclette_5 = {
+  location: "33 boulevard Barbès, 75018 Paris",
+  user_id: User.all[4].id,
+  title: "Raclette chic, détail choc",
+  description: "Une raclette chic pour les gens sophistiqués",
+  number_of_guests: 7
+}
+
+raclette_options = [raclette_1, raclette_2, raclette_3, raclette_4, raclette_5]
 
 puts ">"
 puts "starts creating raclettes"
 raclette_options.each do |raclette_option|
-  file = URI.open("https://images.unsplash.com/photo-1635924210828-ccbe493b6e1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80")
+  file = URI.open("https://media.istockphoto.com/id/864457504/fr/photo/fromage-%C3%A0-raclette-fondu.jpg?s=612x612&w=0&k=20&c=dG6qmUzpuJcPG2bwnrRbYlC22O6snd9BcHxlCzenV0o=")
   raclette = Raclette.new(raclette_option)
   raclette.photo.attach(io: file, filename: "nes#{rand(1..1000000)}.png", content_type: "image/png")
   raclette.save
