@@ -83,4 +83,4 @@ production:
   <<: *default
   database: ma_raclette_production
   username: ma_raclette
-  password: <%= ENV["MA_RACLETTE_DATABASE_PASSWORD"] %>
+  password: <%= ENV["DATABASE_URL"] %>
